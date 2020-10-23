@@ -13,5 +13,6 @@
 
     @push('scripts')
         {{-- Put any custom scripts or library scripts needed for this component here --}}
+        
     @endpush
 @endonce
