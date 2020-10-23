@@ -4,10 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Livewire Playground</title>
 
         <livewire:styles />
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        @stack('styles')
 
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -15,5 +16,6 @@
     <body class="antialiased">
         <livewire:main/>
         <livewire:scripts />
+        @stack('scripts')
     </body>
 </html>
