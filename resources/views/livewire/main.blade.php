@@ -3,6 +3,12 @@
 
         Selected Item:<span>{{ $this->selectedItem['value'] ?? null }}</span>
         Input Value:<span>{{ $this->inputValue ?? null }}</span>
-        <x-autocomplete wire:model.debounce="inputValue" wire:select-item="selectIndex" result-component="list-item" input-changed="input-change" results-changed="results-change" />
+        <x-autocomplete
+            wire:model.debounce="inputValue"
+            wire:select-item="selectIndex"
+            result-component="list-item"
+            input-changed="input-change"
+            results-changed="results-change"
+            item-selected="select-item" />
     </div>
 </div>

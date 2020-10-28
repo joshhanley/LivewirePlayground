@@ -1,13 +1,18 @@
-@props(['result-component', 'input-changed', 'results-changed'])
-<div x-data="autocomplete({'inputChanged': '{{ $inputChanged }}', 'resultsChanged': '{{ $resultsChanged }}'})"
+@props(['result-component', 'input-changed', 'results-changed', 'item-selected'])
+<div x-data="autocomplete({
+    'inputChanged': '{{ $inputChanged }}',
+    'resultsChanged': '{{ $resultsChanged }}',
+    'itemSelected': '{{ $itemSelected }}'
+})"
     x-init="init()"
+    x-spread="events"
     x-on:click.away="showDropdown = false"
     {{ $attributes }}
 >
     <div class="flex">
         <input
             x-on:focus="show()"
-            x-on:blur="cancel()"
+            x-on:keydown.tab="cancel()"
             x-on:keydown.arrow-up.prevent="previousFocus()"
             x-on:keydown.arrow-down.prevent="nextFocus()"
             x-on:keydown.escape.prevent="cancel(); event.target.blur()"
@@ -54,17 +59,23 @@
             focusIndex: null,
             showDropdown: false,
             countResults: 0,
+            events: {
+                ['x-on:'+config.inputChanged]() {
+                    this.search = event.detail.value
+                }
+            },
             inputChanged: config.inputChanged,
             resultsChanged: config.resultsChanged,
+            itemSelected: config.itemSelected,
 
             init() {
                 this.$watch('search', () => this.clearFocus())
 
                 this.countResults = this.$wire.filteredResults.length
 
-                window.addEventListener(this.inputChanged, event => {
-                    this.search = event.detail.value
-                })
+                // window.addEventListener(this.inputChanged, event => {
+                //     this.search = event.detail.value
+                // })
 
                 window.addEventListener(this.resultsChanged, event => {
                     this.countResults = event.detail.count
@@ -105,7 +116,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch('select-item', { 'index': this.focusIndex });
+                $dispatch(this.itemSelected, { 'index': this.focusIndex });
 
                 this.hide()
                 this.clearFocus()
