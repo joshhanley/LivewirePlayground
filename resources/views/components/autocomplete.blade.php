@@ -6,9 +6,11 @@
 >
     <div class="flex">
         <input
-            x-on:focus="showDropdown = true"
+            x-on:focus="show()"
+            x-on:blur="cancel()"
             x-on:keydown.arrow-up.prevent="previousFocus()"
             x-on:keydown.arrow-down.prevent="nextFocus()"
+            x-on:keydown.escape.prevent="cancel(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem($dispatch); event.target.blur()"
             x-model="search"
             class="w-full px-2 rounded border border-cool-gray-500"
