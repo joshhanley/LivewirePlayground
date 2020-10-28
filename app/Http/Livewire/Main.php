@@ -25,12 +25,18 @@ class Main extends Component
 
     public $filteredResults = [];
 
-    protected $listeners = ['selectItem'];
-
-    public function selectIndex($index)
+    public function selectIndex($data)
     {
-        // dd('selectIndex', $index);
-        $this->selectedItem = $this->filteredResults[$index]['value'] ?? null;
+        if (isset($data['index'])) {
+            $index = $data['index'];
+
+            $this->selectedItem = $this->filteredResults[$index] ?? null;
+
+            $this->inputValue = $this->selectedItem['value'];
+
+            $this->limitResults();
+            $this->dispatchBrowserEvent('input-change', ['value' => $this->inputValue]);
+        }
     }
 
     public function mount()
@@ -54,6 +60,8 @@ class Main extends Component
     public function updatedInputValue()
     {
         $this->limitResults();
+
+        $this->dispatchBrowserEvent('input-change', ['value' => $this->inputValue]);
     }
 
     public function render()
