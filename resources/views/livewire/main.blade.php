@@ -8,7 +8,7 @@
             Input Value:<span>{{ $this->inputValue ?? null }}</span>
         </div>
         <x-autocomplete
-            wire:model.debounce="inputValue"
+            wire:model.debounce.300ms="inputValue"
             wire:select-item="selectIndex"
             result-component="list-item"
             :results="$this->filteredResults"
