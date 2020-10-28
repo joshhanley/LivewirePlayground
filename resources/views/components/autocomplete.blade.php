@@ -61,15 +61,7 @@
         x-cloak
     >
         <div class="overflow-y-auto max-h-96 border border-cool-gray-300 rounded shadow-sm bg-white lg:overflow-y-visible lg:max-h-none lg:border-0 lg:rounded-none lg:bg-transparent lg:shadow-none">
-            @foreach($this->filteredResults as $key => $result)
-                <div
-                    :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
-                    class="px-2"
-                    wire:key="{{ $key.'-'.$result['id'] }}"
-                >
-                    <span>{{ $result['value'] }}</span>
-                </div>
-            @endforeach
+            {{ $slot }}
         </div>
     </div>
 </div>
