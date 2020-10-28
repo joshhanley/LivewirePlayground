@@ -12,8 +12,8 @@
             wire:select-item="selectIndex"
             result-component="list-item"
             :results="$this->filteredResults"
-            input-changed="input-change"
-            results-changed="results-changed"
-            item-selected="select-item" />
+            input-changed-event="input-change"
+            results-changed-event="results-changed"
+            item-selected-event="select-item" />
     </div>
 </div>

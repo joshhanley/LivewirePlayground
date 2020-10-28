@@ -1,10 +1,17 @@
-@props(['results', 'result-component', 'initial-count', 'input-changed', 'results-changed', 'item-selected'])
+@props([
+    'results',
+    'result-component',
+    'initial-count',
+    'input-changed-event',
+    'results-changed-event',
+    'item-selected-event'
+])
 <div
     x-data="autocomplete()"
     x-init="init()"
     x-on:click.away="showDropdown = false"
-    x-on:{{ $inputChanged }}.window="search = event.detail.value"
-    x-on:{{ $resultsChanged }}.window="countResults = event.detail.count"
+    x-on:{{ $inputChangedEvent }}.window="search = event.detail.value"
+    x-on:{{ $resultsChangedEvent }}.window="countResults = event.detail.count"
     {{ $attributes }}
 >
     <div class="flex flex-col">
@@ -135,7 +142,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch('{{ $itemSelected }}', { 'index': this.focusIndex });
+                $dispatch('{{ $itemSelectedEvent }}', { 'index': this.focusIndex });
 
                 this.hide()
                 this.clearFocus()
