@@ -13,8 +13,10 @@
             x-on:keydown.tab="cancel()"
             x-on:keydown.escape.prevent="cancel(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem($dispatch); event.target.blur()"
-            x-on:keydown.arrow-up.prevent="previousFocus()"
-            x-on:keydown.arrow-down.prevent="nextFocus()"
+            x-on:keydown.arrow-up.prevent="focusPrevious()"
+            x-on:keydown.arrow-down.prevent="focusNext()"
+            x-on:keydown.home.prevent="focusFirst()"
+            x-on:keydown.end.prevent="focusLast()"
             x-model="search"
             class="w-full px-2 rounded border border-cool-gray-500"
             type="text"
@@ -104,15 +106,15 @@
                 return this.focusIndex >= this.countResults - 1
             },
 
-            setFocusToStart() {
+            focusFirst() {
                 this.focusIndex = 0
             },
 
-            setFocusToEnd() {
+            focusLast() {
                 this.focusIndex = this.countResults - 1
             },
 
-            previousFocus() {
+            focusPrevious() {
                 if(this.hasNoResults()) return this.clearFocus()
 
                 if(this.hasNoFocus()) return
@@ -122,10 +124,10 @@
                 this.focusIndex--
             },
 
-            nextFocus() {
+            focusNext() {
                 if(this.hasNoResults()) return this.clearFocus()
 
-                if(this.hasNoFocus()) return this.setFocusToStart()
+                if(this.hasNoFocus()) return this.focusFirst()
 
                 if(this.focusIsAtEnd()) return
 
