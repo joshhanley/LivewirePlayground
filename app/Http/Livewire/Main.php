@@ -54,7 +54,7 @@ class Main extends Component
             }));
         }
 
-        $this->dispatchBrowserEvent('results-change', ['count' => count($this->filteredResults)]);
+        $this->dispatchBrowserEvent('results-changed', ['count' => count($this->filteredResults)]);
     }
 
     public function updatedInputValue()

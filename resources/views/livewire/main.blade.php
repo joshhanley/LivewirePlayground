@@ -8,7 +8,7 @@
             wire:select-item="selectIndex"
             result-component="list-item"
             input-changed="input-change"
-            results-changed="results-change"
+            results-changed="results-changed"
             item-selected="select-item" />
     </div>
 </div>

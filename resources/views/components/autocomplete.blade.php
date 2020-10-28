@@ -1,22 +1,20 @@
 @props(['result-component', 'input-changed', 'results-changed', 'item-selected'])
-<div x-data="autocomplete({
-    'inputChanged': '{{ $inputChanged }}',
-    'resultsChanged': '{{ $resultsChanged }}',
-    'itemSelected': '{{ $itemSelected }}'
-})"
+<div
+    x-data="autocomplete()"
     x-init="init()"
-    x-spread="events"
     x-on:click.away="showDropdown = false"
+    x-on:{{ $inputChanged }}.window="search = event.detail.value"
+    x-on:{{ $resultsChanged }}.window="countResults = event.detail.count"
     {{ $attributes }}
 >
     <div class="flex">
         <input
             x-on:focus="show()"
             x-on:keydown.tab="cancel()"
-            x-on:keydown.arrow-up.prevent="previousFocus()"
-            x-on:keydown.arrow-down.prevent="nextFocus()"
             x-on:keydown.escape.prevent="cancel(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem($dispatch); event.target.blur()"
+            x-on:keydown.arrow-up.prevent="previousFocus()"
+            x-on:keydown.arrow-down.prevent="nextFocus()"
             x-model="search"
             class="w-full px-2 rounded border border-cool-gray-500"
             type="text"
@@ -59,27 +57,11 @@
             focusIndex: null,
             showDropdown: false,
             countResults: 0,
-            events: {
-                ['x-on:'+config.inputChanged]() {
-                    this.search = event.detail.value
-                }
-            },
-            inputChanged: config.inputChanged,
-            resultsChanged: config.resultsChanged,
-            itemSelected: config.itemSelected,
 
             init() {
                 this.$watch('search', () => this.clearFocus())
 
                 this.countResults = this.$wire.filteredResults.length
-
-                // window.addEventListener(this.inputChanged, event => {
-                //     this.search = event.detail.value
-                // })
-
-                window.addEventListener(this.resultsChanged, event => {
-                    this.countResults = event.detail.count
-                })
             },
 
             show() {
@@ -116,7 +98,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch(this.itemSelected, { 'index': this.focusIndex });
+                $dispatch('{{ $itemSelected }}', { 'index': this.focusIndex });
 
                 this.hide()
                 this.clearFocus()
