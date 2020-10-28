@@ -1,4 +1,4 @@
-@props(['result-component', 'input-changed', 'results-changed', 'item-selected'])
+@props(['results', 'result-component', 'initial-count', 'input-changed', 'results-changed', 'item-selected'])
 <div
     x-data="autocomplete()"
     x-init="init()"
@@ -7,7 +7,7 @@
     x-on:{{ $resultsChanged }}.window="countResults = event.detail.count"
     {{ $attributes }}
 >
-    <div class="flex">
+    <div class="flex flex-col">
         <input
             x-on:focus="show()"
             x-on:keydown.tab="cancel()"
@@ -33,7 +33,7 @@
         x-cloak
     >
         <div class="overflow-y-auto max-h-96 border border-cool-gray-300 rounded shadow-sm bg-white lg:overflow-y-visible lg:max-h-none lg:border-0 lg:rounded-none lg:bg-transparent lg:shadow-none">
-            @foreach($this->filteredResults as $key => $result)
+            @foreach($results as $key => $result)
                 <div
                     :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                     class="px-2"
@@ -56,12 +56,10 @@
             search: '',
             focusIndex: null,
             showDropdown: false,
-            countResults: 0,
+            countResults: {{ count($results) }},
 
             init() {
                 this.$watch('search', () => this.clearFocus())
-
-                this.countResults = this.$wire.filteredResults.length
             },
 
             show() {
