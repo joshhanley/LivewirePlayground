@@ -60,8 +60,6 @@ class Main extends Component
     public function updatedInputValue()
     {
         $this->limitResults();
-
-        $this->dispatchBrowserEvent('input-change', ['value' => $this->inputValue]);
     }
 
     public function render()
