@@ -29,6 +29,7 @@ class Main extends Component
 
     public function selectIndex($index)
     {
+        // dd('selectIndex', $index);
         $this->selectedItem = $this->filteredResults[$index]['value'] ?? null;
     }
 

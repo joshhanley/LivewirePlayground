@@ -22,9 +22,10 @@
             console.log('focus reset')
             this.focusIndex = null
         },
-        selectItem() {
+        selectItem($dispatch) {
             console.log('dispatch select item')
-            this.$wire.selectIndex(this.focusIndex)
+            $dispatch('select-item', this.focusIndex);
+            {{-- this.$wire.selectIndex(this.focusIndex) --}}
         }
     }"
     x-init="$watch('search', (value) => {
@@ -40,7 +41,7 @@
             x-on:focus="showDropdown = true"
             x-on:keydown.arrow-up.prevent="previousFocus()"
             x-on:keydown.arrow-down.prevent="nextFocus()"
-            x-on:keydown.enter.prevent="selectItem()"
+            x-on:keydown.enter.prevent="selectItem($dispatch)"
             x-model="search"
             class="w-full px-2 rounded border border-cool-gray-500"
             type="text"
