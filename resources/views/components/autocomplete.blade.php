@@ -88,20 +88,48 @@
                 this.focusIndex = null;
             },
 
+            hasNoResults() {
+                return this.countResults <= 0
+            },
+
+            hasNoFocus() {
+                return this.focusIndex == null
+            },
+
+            focusIsAtStart() {
+                return this.focusIndex == 0
+            },
+
+            focusIsAtEnd() {
+                return this.focusIndex >= this.countResults - 1
+            },
+
+            setFocusToStart() {
+                this.focusIndex = 0
+            },
+
+            setFocusToEnd() {
+                this.focusIndex = this.countResults - 1
+            },
+
             previousFocus() {
-                if(this.focusIndex <= 0 || this.focusIndex == null) return this.clearFocus()
+                if(this.hasNoResults()) return this.clearFocus()
+
+                if(this.hasNoFocus()) return
+
+                if(this.focusIsAtStart()) return this.clearFocus();
 
                 this.focusIndex--
             },
 
             nextFocus() {
-                if(this.countResults <= 0) return this.clearFocus()
+                if(this.hasNoResults()) return this.clearFocus()
 
-                if(this.focusIndex == null && this.countResults > 0) return this.focusIndex = 0
+                if(this.hasNoFocus()) return this.setFocusToStart()
+
+                if(this.focusIsAtEnd()) return
 
                 this.focusIndex++
-
-                if(this.focusIndex >= this.countResults) this.focusIndex = this.countResults - 1
             },
 
             selectItem($dispatch) {
