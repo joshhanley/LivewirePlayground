@@ -26,7 +26,7 @@
             x-on:keydown.home.prevent="focusFirst()"
             x-on:keydown.end.prevent="focusLast()"
             x-model="search"
-            class="w-full px-2 rounded border border-cool-gray-500"
+            class=" w-56 px-2 rounded border border-cool-gray-500"
             type="text"
             name="search"
             placeholder="Search"
@@ -38,9 +38,14 @@
         </div>
     </div>
 
-    <div x-show="showDropdown && countResults"
-        class="w-full p-2 overflow-y-hidden text-sm rounded border border-cool-gray-300 bg-cool-gray-50 shadow-inner
-            {{ $inline ? 'lg:block' : 'lg:absolute'}} lg:p-0 lg:overflow-y-auto lg:max-h-96  lg:left-2 lg:mt-2 lg:w-56 lg:z-20 lg:border-cool-gray-400 lg:bg-white lg:shadow-lg"
+    <div x-show="showDropdown"
+        class="w-full p-2 overflow-y-hidden text-sm rounded border border-cool-gray-300 bg-cool-gray-50 shadow-inner {{ $inline ? 'lg:block' : 'lg:absolute'}} lg:p-0 lg:overflow-y-auto lg:max-h-96  lg:left-2 lg:mt-2 lg:w-56 lg:z-20 lg:border-cool-gray-400 lg:bg-white lg:shadow-lg"
+        x-transition:enter="transition ease-out duration-100 origin-top"
+        x-transition:enter-start="transform opacity-0 scale-y-90"
+        x-transition:enter-end="transform opacity-100 scale-y-100"
+        x-transition:leave="transition ease-in duration-75 origin-top"
+        x-transition:leave-start="transform opacity-100 scale-y-100"
+        x-transition:leave-end="transform opacity-0 scale-y-90"
         x-cloak
     >
         <div class="overflow-y-auto relative max-h-96 border border-cool-gray-300 rounded shadow-sm bg-white lg:overflow-y-visible lg:max-h-none lg:border-0 lg:rounded-none lg:bg-transparent lg:shadow-none">
