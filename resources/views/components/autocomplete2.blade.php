@@ -6,6 +6,7 @@
     'itemSelectedMethod',
     'inline' => null,
 ])
+{{-- TODO: fix select event issues --}}
 <div
     x-data="autocomplete({
         'inputProperty': '{{ $inputProperty }}',
@@ -43,7 +44,7 @@
     </div>
 
     <div
-        x-show="showDropdown && countResults"
+        x-show="showDropdown"
         class="w-full p-2 overflow-y-hidden text-sm rounded border border-cool-gray-300 bg-cool-gray-50 shadow-inner {{ $inline ? 'lg:block' : 'lg:absolute'}} lg:p-0 lg:overflow-y-auto lg:max-h-96  lg:left-2 lg:mt-2 lg:w-56 lg:z-20 lg:border-cool-gray-400 lg:bg-white lg:shadow-lg"
         x-transition:enter="transition ease-out duration-100 origin-top"
         x-transition:enter-start="transform opacity-0 scale-y-90"
@@ -70,6 +71,7 @@
                         x-on:mouseenter="focusIndex = {{ $key }}"
                         x-on:mouseenter="focusIndex = null"
                         x-on:click="selectItem($dispatch)"
+                        x-bind:key="'{{ $itemSelectedMethod.$key }}'"
                     >
                         <x-dynamic-component :component="$resultComponent" :model="$result" />
                     </div>
@@ -160,7 +162,9 @@
             },
 
             selectItem($dispatch) {
-                this.$wire.call(this.itemSelectedMethod, this.focusIndex)
+                // this.$wire.call(this.itemSelectedMethod, this.focusIndex)
+
+                $dispatch('selectitem', this.focusIndex)
 
                 this.hide()
                 this.clearFocus()

@@ -4,6 +4,7 @@
         <div wire:key="1">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput"
+                    wire:selectitem.stop.prevent="selectUser"
                     :results="$this->users"
                     input-property="userInput"
                     results-property="users"
@@ -16,6 +17,7 @@
                 <div>
                     <span class="font-bold">User</span>
                     <ul>
+                        <li>Input:{{ $userInput }}</li>
                         <li>{{ $user->name }}</li>
                     </ul>
                 </div>
@@ -23,6 +25,7 @@
                 <div>
                     <span class="font-bold">Users Filtered</span>
                     <ul>
+                        <li>Count:{{ count($users) }}</li>
                         @foreach($users as $user)
                         <li>{{ $user->name }}</li>
                         @endforeach
@@ -62,7 +65,7 @@
                 <div>
                     <span class="font-bold">Users Filtered</span>
                     <ul>
-                        @foreach($users2 as $user)
+                        @foreach($users2 as $user2)
                         <li>{{ $user2->name }}</li>
                         @endforeach
                     </ul>
