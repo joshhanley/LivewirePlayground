@@ -42,7 +42,8 @@
         </div>
     </div>
 
-    <div x-show="showDropdown"
+    <div
+        x-show="showDropdown && countResults"
         class="w-full p-2 overflow-y-hidden text-sm rounded border border-cool-gray-300 bg-cool-gray-50 shadow-inner {{ $inline ? 'lg:block' : 'lg:absolute'}} lg:p-0 lg:overflow-y-auto lg:max-h-96  lg:left-2 lg:mt-2 lg:w-56 lg:z-20 lg:border-cool-gray-400 lg:bg-white lg:shadow-lg"
         x-transition:enter="transition ease-out duration-100 origin-top"
         x-transition:enter-start="transform opacity-0 scale-y-90"
