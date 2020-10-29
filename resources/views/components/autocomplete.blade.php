@@ -9,7 +9,11 @@
 ])
 <div
     x-data="autocomplete()"
-    x-init="init({'itemSelectedEvent': '{{ $itemSelectedEvent }}', 'search': '{{ $initialValue }}', 'countResults': {{ count($results) }} })"
+    x-init="init({
+        'itemSelectedEvent': '{{ $itemSelectedEvent }}',
+        'search': '{{ $initialValue }}',
+        'countResults': {{ count($results) }},
+    })"
     x-on:click.away="showDropdown = false"
     x-on:{{ $inputChangedEvent }}.window="search = event.detail.value"
     x-on:{{ $resultsChangedEvent }}.window="countResults = event.detail.count"
