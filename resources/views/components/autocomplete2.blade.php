@@ -1,12 +1,10 @@
 @props([
     'resultComponent',
-    'inputProperty',
     'resultsProperty',
     'inline' => null,
 ])
 <div
     x-data="autocomplete({
-        'inputProperty': '{{ $inputProperty }}',
         'results': @entangle($resultsProperty)
     })"
     x-on:click.away="cancel()"
@@ -62,7 +60,7 @@
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
-                        wire:key="{{ $inputProperty.$key }}"
+                        wire:key="{{ $attributes->wire('model')->value.$key }}"
                         x-on:mouseenter="focusIndex = {{ $key }}"
                         x-on:mouseenter="focusIndex = null"
                     >
@@ -78,7 +76,6 @@
 <script>
     function autocomplete(config) {
         return {
-            inputProperty: config.inputProperty,
             results: config.results,
             focusIndex: null,
             showDropdown: false,

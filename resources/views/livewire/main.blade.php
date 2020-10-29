@@ -5,7 +5,6 @@
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput"
                     wire:select-item.stop.prevent="selectUser"
-                    input-property="userInput"
                     results-property="users"
                     result-component="user-item"
                     inline
@@ -45,7 +44,6 @@
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput2"
                     wire:select-item.stop.prevent="selectUser2"
-                    input-property="userInput2"
                     results-property="users2"
                     result-component="user-item"
                     inline
