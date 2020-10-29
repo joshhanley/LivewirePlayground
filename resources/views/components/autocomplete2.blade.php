@@ -1,11 +1,17 @@
 @props([
     'results',
     'resultComponent',
+    'inputProperty',
+    'resultsProperty',
     'itemSelectedMethod',
     'inline' => null,
 ])
 <div
-    x-data="autocomplete()"
+    x-data="autocomplete({
+        'inputProperty': '{{ $inputProperty }}',
+        'resultsProperty': '{{ $resultsProperty }}',
+        'itemSelectedMethod': '{{ $itemSelectedMethod }}',
+    })"
     x-init="init()"
     x-on:click.away="cancel()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
@@ -77,17 +83,20 @@
     function autocomplete(config) {
         return {
             search: null,
+            resultsProperty: config.resultsProperty,
+            inputProperty: config.inputProperty,
+            itemSelectedMethod: config.itemSelectedMethod,
             focusIndex: null,
             showDropdown: false,
             countResults: 0,
 
             init() {
-                this.countResults = this.$wire.users.length
-                this.search = this.$wire.userInput
+                this.countResults = this.$wire[this.resultsProperty].length
+                this.search = this.$wire[this.inputProperty]
 
                 Livewire.hook('message.processed', (message, component) => {
-                    this.countResults = this.$wire.users.length
-                    this.search = this.$wire.userInput
+                    this.countResults = this.$wire[this.resultsProperty].length
+                    this.search = this.$wire[this.inputProperty]
                 })
 
                 this.$watch('search', () => {
@@ -157,7 +166,7 @@
             },
 
             selectItem($dispatch) {
-                this.$wire.call('{{ $itemSelectedMethod }}', this.focusIndex)
+                this.$wire.call(this.itemSelectedMethod, this.focusIndex)
 
                 this.hide()
                 this.clearFocus()
