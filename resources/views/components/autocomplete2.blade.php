@@ -91,7 +91,7 @@
                 this.$watch('search', () => {
                     this.clearFocus()
 
-                    this.countResults =
+                    // this.countResults =
                 })
             },
 
