@@ -61,7 +61,7 @@
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
-                        wire:key="{{ $key }}"
+                        wire:key="{{ $itemSelectedEvent.$key }}"
                         x-on:mouseenter="focusIndex = {{ $key }}"
                         x-on:mouseenter="focusIndex = null"
                         x-on:click="selectItem($dispatch)"
