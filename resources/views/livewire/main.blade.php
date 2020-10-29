@@ -11,13 +11,24 @@
                 wire:key="1"
             />
 
-            <div>
-                Users All
-                <ul>
-                    @foreach($allUsers as $user)
-                    <li>{{ $user->name }}</li>
-                    @endforeach
-                </ul>
+            <div class="flex flex-col space-y-4">
+                <div>
+                    Users Filtered
+                    <ul>
+                        @foreach($users as $user)
+                        <li>{{ $user->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div>
+                    Users All
+                    <ul>
+                        @foreach($allUsers as $user)
+                        <li>{{ $user->name }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
 
         {{-- <div class="flex flex-col space-y-4" wire:key="1">

@@ -22,7 +22,7 @@ class Main extends Component
 
     public function render()
     {
-        $this->users = User::where('name', '%like%', $this->userInput)->get();
+        $this->users = User::where('name', 'LIKE', "%{$this->userInput}")->get();
         return view('livewire.main');
     }
 
