@@ -8,7 +8,7 @@
 <div
     x-data="autocomplete({
         'inputProperty': '{{ $inputProperty }}',
-        'resultsProperty': '{{ $resultsProperty }}',
+        'results': @entangle($resultsProperty)
     })"
     x-init="init()"
     x-on:click.away="cancel()"
@@ -36,7 +36,7 @@
         <div>
             Show:<span x-text="showDropdown ? 'true' : 'false'"></span>
             Focus:<span x-text="focusIndex"></span>
-            Total:<span x-text="countResults"></span>
+            Total:<span x-text="totalResults()"></span>
         </div>
     </div>
 
@@ -80,18 +80,12 @@
 <script>
     function autocomplete(config) {
         return {
-            resultsProperty: config.resultsProperty,
             inputProperty: config.inputProperty,
             focusIndex: null,
             showDropdown: false,
-            countResults: 0,
+            results: config.results,
 
             init() {
-                this.countResults = this.$wire.get(this.resultsProperty).length
-
-                Livewire.hook('message.processed', (message, component) => {
-                    this.countResults = this.$wire.get(this.resultsProperty).length
-                })
             },
 
             show() {
@@ -112,7 +106,11 @@
             },
 
             hasNoResults() {
-                return this.countResults <= 0
+                return this.totalResults() <= 0
+            },
+
+            totalResults() {
+                return this.results.length;
             },
 
             hasNoFocus() {
@@ -124,7 +122,7 @@
             },
 
             focusIsAtEnd() {
-                return this.focusIndex >= this.countResults - 1
+                return this.focusIndex >= this.totalResults() - 1
             },
 
             focusFirst() {
@@ -132,7 +130,7 @@
             },
 
             focusLast() {
-                this.focusIndex = this.countResults - 1
+                this.focusIndex = this.totalResults() - 1
             },
 
             focusPrevious() {
