@@ -156,7 +156,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch('selectitem', this.focusIndex.toString())
+                $dispatch('select-item', this.focusIndex.toString())
 
                 this.hide()
                 this.clearFocus()
