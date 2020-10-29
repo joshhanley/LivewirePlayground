@@ -8,7 +8,6 @@
                     :results="$this->users"
                     input-property="userInput"
                     results-property="users"
-                    item-selected-method="selectUser"
                     result-component="user-item"
                     inline
                 />
@@ -46,10 +45,10 @@
         <div wire:key="2">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput2"
+                    wire:selectitem.stop.prevent="selectUser2"
                     :results="$this->users2"
                     input-property="userInput2"
                     results-property="users2"
-                    item-selected-method="selectUser2"
                     result-component="user-item"
                     inline
                 />

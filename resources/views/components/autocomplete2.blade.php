@@ -3,17 +3,15 @@
     'resultComponent',
     'inputProperty',
     'resultsProperty',
-    'itemSelectedMethod',
     'inline' => null,
 ])
 {{-- TODO: fix select event issues --}}
 <div
-    x-data="autocomplete({
+    x-data="autocomplete()"
+    x-init="init({
         'inputProperty': '{{ $inputProperty }}',
         'resultsProperty': '{{ $resultsProperty }}',
-        'itemSelectedMethod': '{{ $itemSelectedMethod }}',
     })"
-    x-init="init()"
     x-on:click.away="cancel()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
@@ -62,16 +60,14 @@
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
             </div>
-            <div>
+            <div x-on:click="selectItem($dispatch)">
                 @foreach($results as $key => $result)
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
-                        wire:key="{{ $itemSelectedMethod.$key }}"
+                        wire:key="{{ $inputProperty.$key }}"
                         x-on:mouseenter="focusIndex = {{ $key }}"
                         x-on:mouseenter="focusIndex = null"
-                        x-on:click="selectItem($dispatch)"
-                        x-bind:key="'{{ $itemSelectedMethod.$key }}'"
                     >
                         <x-dynamic-component :component="$resultComponent" :model="$result" />
                     </div>
@@ -85,14 +81,15 @@
 <script>
     function autocomplete(config) {
         return {
-            resultsProperty: config.resultsProperty,
-            inputProperty: config.inputProperty,
-            itemSelectedMethod: config.itemSelectedMethod,
+            resultsProperty: null,
+            inputProperty: null,
             focusIndex: null,
             showDropdown: false,
             countResults: 0,
 
-            init() {
+            init(config) {
+                this.resultsProperty = config.resultsProperty
+                this.inputProperty = config.inputProperty
                 this.countResults = this.$wire.get(this.resultsProperty).length
 
                 Livewire.hook('message.processed', (message, component) => {
@@ -162,9 +159,7 @@
             },
 
             selectItem($dispatch) {
-                // this.$wire.call(this.itemSelectedMethod, this.focusIndex)
-
-                $dispatch('selectitem', this.focusIndex)
+                $dispatch('selectitem', this.focusIndex.toString())
 
                 this.hide()
                 this.clearFocus()

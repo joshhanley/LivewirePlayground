@@ -43,8 +43,7 @@ class Main extends Component
 
     public function selectUser($focusIndex)
     {
-        // dump('select', $this->users, 'focus', $focusIndex, 'user', $this->users[$focusIndex]);
-        $this->user = $this->users[$focusIndex];
+        $this->user = $this->users[$focusIndex] ?? new User();
         $this->userInput = $this->user->name;
         $this->getUsers();
     }
@@ -53,8 +52,7 @@ class Main extends Component
     {
         $this->user2 = $this->users2[$focusIndex] ?? new User();
         $this->userInput2 = $this->user2->name;
-        // $this->getUsers2();
-        // dump('select2', $focusIndex);
+        $this->getUsers2();
     }
 
     public function updatedUserInput()
