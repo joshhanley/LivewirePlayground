@@ -1,15 +1,15 @@
 @props([
     'results',
-    'result-component',
-    'initial-count',
-    'input-changed-event',
-    'results-changed-event',
-    'item-selected-event',
+    'resultComponent',
+    'initialValue' => '',
+    'inputChangedEvent',
+    'resultsChangedEvent',
+    'itemSelectedEvent',
     'inline' => null
 ])
 <div
-    x-data="autocomplete({'itemSelectedEvent': '{{ $itemSelectedEvent }}'})"
-    x-init="init()"
+    x-data="autocomplete()"
+    x-init="init({'itemSelectedEvent': '{{ $itemSelectedEvent }}', 'search': '{{ $initialValue }}', 'countResults': {{ count($results) }} })"
     x-on:click.away="showDropdown = false"
     x-on:{{ $inputChangedEvent }}.window="search = event.detail.value"
     x-on:{{ $resultsChangedEvent }}.window="countResults = event.detail.count"
@@ -33,6 +33,7 @@
             autocomplete="off" />
 
         <div>
+            Show:<span x-text="showDropdown ? 'true' : 'false'"></span>
             Focus:<span x-text="focusIndex"></span>
             Total:<span x-text="countResults"></span>
         </div>
@@ -81,10 +82,14 @@
             search: '',
             focusIndex: null,
             showDropdown: false,
-            countResults: {{ count($results) }},
-            itemSelectedEvent: config.itemSelectedEvent,
+            countResults: 0,
+            itemSelectedEvent: '',
 
-            init() {
+            init(config) {
+                this.search = config.search
+                this.countResults = config.countResults
+                this.itemSelectedEvent = config.itemSelectedEvent
+
                 this.$watch('search', () => this.clearFocus())
             },
 
