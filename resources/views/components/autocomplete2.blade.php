@@ -27,7 +27,7 @@
             x-on:keydown.arrow-down.prevent="focusNext()"
             x-on:keydown.home.prevent="focusFirst()"
             x-on:keydown.end.prevent="focusLast()"
-            x-model="search"
+            x-on:input.debounce.300ms="clearFocus()"
             class=" w-56 px-2 rounded border border-cool-gray-500"
             type="text"
             name="search"
@@ -82,7 +82,6 @@
 <script>
     function autocomplete(config) {
         return {
-            search: null,
             resultsProperty: config.resultsProperty,
             inputProperty: config.inputProperty,
             itemSelectedMethod: config.itemSelectedMethod,
@@ -91,16 +90,10 @@
             countResults: 0,
 
             init() {
-                this.countResults = this.$wire[this.resultsProperty].length
-                this.search = this.$wire[this.inputProperty]
+                this.countResults = this.$wire.get(this.resultsProperty).length
 
                 Livewire.hook('message.processed', (message, component) => {
-                    this.countResults = this.$wire[this.resultsProperty].length
-                    this.search = this.$wire[this.inputProperty]
-                })
-
-                this.$watch('search', () => {
-                    this.clearFocus()
+                    this.countResults = this.$wire.get(this.resultsProperty).length
                 })
             },
 
