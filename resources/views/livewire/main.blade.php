@@ -15,5 +15,6 @@
             input-changed-event="input-change"
             results-changed-event="results-changed"
             item-selected-event="select-item" />
+        <input type="text" />
     </div>
 </div>
