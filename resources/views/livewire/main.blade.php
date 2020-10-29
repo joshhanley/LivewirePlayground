@@ -14,7 +14,9 @@
             :results="$this->filteredResults"
             input-changed-event="input-change"
             results-changed-event="results-changed"
-            item-selected-event="select-item" />
-        <input type="text" />
+            item-selected-event="select-item"
+            inline
+        />
+        <input class="border border-gray-500" type="text" />
     </div>
 </div>
