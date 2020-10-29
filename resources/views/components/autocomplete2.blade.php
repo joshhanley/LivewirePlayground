@@ -10,7 +10,6 @@
         'inputProperty': '{{ $inputProperty }}',
         'results': @entangle($resultsProperty)
     })"
-    x-init="init()"
     x-on:click.away="cancel()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
@@ -81,12 +80,9 @@
     function autocomplete(config) {
         return {
             inputProperty: config.inputProperty,
+            results: config.results,
             focusIndex: null,
             showDropdown: false,
-            results: config.results,
-
-            init() {
-            },
 
             show() {
                 this.showDropdown = true
