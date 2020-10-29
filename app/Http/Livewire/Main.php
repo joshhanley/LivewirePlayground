@@ -37,15 +37,6 @@ class Main extends Component
         ['id' => 10, 'value' =>'bbbbbbbbbbb']
     ];
 
-    public $filteredResults = [];
-    public $filteredResults2 = [];
-
-    public function mount()
-    {
-        $this->limitResults();
-        $this->limitResults2();
-    }
-
     public function selectIndex($data)
     {
         if (isset($data['index'])) {
@@ -55,27 +46,23 @@ class Main extends Component
 
             $this->inputValue = $this->selectedItem['value'];
 
-            $this->limitResults();
             $this->dispatchBrowserEvent('input-change', ['value' => $this->inputValue]);
         }
     }
 
-    public function limitResults()
+    public function getFilteredResultsProperty()
     {
         if (is_null($this->inputValue) || $this->inputValue == '') {
-            $this->filteredResults = $this->results;
+            $filteredResults = $this->results;
         } else {
-            $this->filteredResults = array_values(array_filter($this->results, function ($resultValue) {
+            $filteredResults = array_values(array_filter($this->results, function ($resultValue) {
                 return strpos($resultValue['value'], $this->inputValue) !== false;
             }));
         }
 
-        $this->dispatchBrowserEvent('results-changed', ['count' => count($this->filteredResults)]);
-    }
+        $this->dispatchBrowserEvent('results-changed', ['count' => count($filteredResults)]);
 
-    public function updatedInputValue()
-    {
-        $this->limitResults();
+        return $filteredResults;
     }
 
     public function selectIndex2($data)
@@ -87,27 +74,23 @@ class Main extends Component
 
             $this->inputValue2 = $this->selectedItem2['value'];
 
-            $this->limitResults2();
             $this->dispatchBrowserEvent('input-change2', ['value' => $this->inputValue2]);
         }
     }
 
-    public function limitResults2()
+    public function getFilteredResults2Property()
     {
         if (is_null($this->inputValue2) || $this->inputValue2 == '') {
-            $this->filteredResults2 = $this->results2;
+            $filteredResults2 = $this->results2;
         } else {
-            $this->filteredResults2 = array_values(array_filter($this->results2, function ($resultValue) {
+            $filteredResults2 = array_values(array_filter($this->results2, function ($resultValue) {
                 return strpos($resultValue['value'], $this->inputValue2) !== false;
             }));
         }
 
-        $this->dispatchBrowserEvent('results-changed2', ['count' => count($this->filteredResults2)]);
-    }
+        $this->dispatchBrowserEvent('results-changed2', ['count' => count($filteredResults2)]);
 
-    public function updatedInputValue2()
-    {
-        $this->limitResults2();
+        return $filteredResults2;
     }
 
     public function render()
