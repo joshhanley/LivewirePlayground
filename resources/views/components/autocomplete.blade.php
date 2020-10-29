@@ -8,7 +8,7 @@
     'inline' => null
 ])
 <div
-    x-data="autocomplete()"
+    x-data="autocomplete({'itemSelectedEvent': '{{ $itemSelectedEvent }}'})"
     x-init="init()"
     x-on:click.away="showDropdown = false"
     x-on:{{ $inputChangedEvent }}.window="search = event.detail.value"
@@ -82,6 +82,7 @@
             focusIndex: null,
             showDropdown: false,
             countResults: {{ count($results) }},
+            itemSelectedEvent: config.itemSelectedEvent,
 
             init() {
                 this.$watch('search', () => this.clearFocus())
@@ -149,7 +150,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch('{{ $itemSelectedEvent }}', { 'index': this.focusIndex });
+                $dispatch(this.itemSelectedEvent, { 'index': this.focusIndex });
 
                 this.hide()
                 this.clearFocus()
