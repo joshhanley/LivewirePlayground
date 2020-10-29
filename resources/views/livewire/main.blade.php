@@ -1,7 +1,26 @@
 <div class="relative w-full h-screen p-4 flex flex-col  items-center bg-gray-100">
     <div class="flex flex-col space-y-4">
 
-        <div class="flex flex-col space-y-4" wire:key="1">
+        <x-autocomplete2
+                wire:model.debounce.300ms="userInput"
+                :results="$this->users"
+                result-component="user-item"
+                item-selected-event="user-selected"
+                value=""
+                inline
+                wire:key="1"
+            />
+
+            <div>
+                Users All
+                <ul>
+                    @foreach($allUsers as $user)
+                    <li>{{ $user->name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+
+        {{-- <div class="flex flex-col space-y-4" wire:key="1">
             <div>
                 Selected Item:<span>{{ $this->selectedItem['value'] ?? null }}</span>
             </div>
@@ -47,6 +66,6 @@
         <div>
             {{ count($this->filteredResults) }}
             {{ count($this->filteredResults2) }}
-        </div>
+        </div> --}}
     </div>
 </div>
