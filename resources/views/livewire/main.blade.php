@@ -4,7 +4,7 @@
         <div wire:key="1">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput"
-                    wire:select-item.stop.prevent="selectUser"
+                    wire:select-item="selectUser"
                     results-property="users"
                     result-component="user-item"
                     inline
@@ -43,7 +43,7 @@
         <div wire:key="2">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput2"
-                    wire:select-item.stop.prevent="selectUser2"
+                    wire:select-item="selectUser2"
                     results-property="users2"
                     result-component="user-item"
                     inline
