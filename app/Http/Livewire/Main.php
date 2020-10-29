@@ -37,6 +37,16 @@ class Main extends Component
         ['id' => 10, 'value' =>'bbbbbbbbbbb']
     ];
 
+    public $filteredResults = [];
+
+    public $filteredResults2 = [];
+
+    public function mount()
+    {
+        $this->updateFilteredResults();
+        $this->updateFilteredResults2();
+    }
+
     public function selectIndex($data)
     {
         if (isset($data['index'])) {
@@ -46,23 +56,28 @@ class Main extends Component
 
             $this->inputValue = $this->selectedItem['value'];
 
+            $this->updateFilteredResults();
+
             $this->dispatchBrowserEvent('input-change', ['value' => $this->inputValue]);
         }
     }
 
-    public function getFilteredResultsProperty()
+    public function updateFilteredResults()
     {
         if (is_null($this->inputValue) || $this->inputValue == '') {
-            $filteredResults = $this->results;
+            $this->filteredResults = $this->results;
         } else {
-            $filteredResults = array_values(array_filter($this->results, function ($resultValue) {
+            $this->filteredResults = array_values(array_filter($this->results, function ($resultValue) {
                 return strpos($resultValue['value'], $this->inputValue) !== false;
             }));
         }
 
-        $this->dispatchBrowserEvent('results-changed', ['count' => count($filteredResults)]);
+        $this->dispatchBrowserEvent('results-changed', ['count' => count($this->filteredResults)]);
+    }
 
-        return $filteredResults;
+    public function updatedInputValue()
+    {
+        $this->updateFilteredResults();
     }
 
     public function selectIndex2($data)
@@ -74,23 +89,28 @@ class Main extends Component
 
             $this->inputValue2 = $this->selectedItem2['value'];
 
+            $this->updateFilteredResults2();
+
             $this->dispatchBrowserEvent('input-change2', ['value' => $this->inputValue2]);
         }
     }
 
-    public function getFilteredResults2Property()
+    public function updateFilteredResults2()
     {
         if (is_null($this->inputValue2) || $this->inputValue2 == '') {
-            $filteredResults2 = $this->results2;
+            $this->filteredResults2 = $this->results2;
         } else {
-            $filteredResults2 = array_values(array_filter($this->results2, function ($resultValue) {
+            $this->filteredResults2 = array_values(array_filter($this->results2, function ($resultValue) {
                 return strpos($resultValue['value'], $this->inputValue2) !== false;
             }));
         }
 
-        $this->dispatchBrowserEvent('results-changed2', ['count' => count($filteredResults2)]);
+        $this->dispatchBrowserEvent('results-changed2', ['count' => count($this->filteredResults2)]);
+    }
 
-        return $filteredResults2;
+    public function updatedInputValue2()
+    {
+        $this->updateFilteredResults2();
     }
 
     public function render()
