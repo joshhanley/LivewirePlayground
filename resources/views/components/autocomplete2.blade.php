@@ -5,13 +5,12 @@
     'resultsProperty',
     'inline' => null,
 ])
-{{-- TODO: fix select event issues --}}
 <div
-    x-data="autocomplete()"
-    x-init="init({
+    x-data="autocomplete({
         'inputProperty': '{{ $inputProperty }}',
         'resultsProperty': '{{ $resultsProperty }}',
     })"
+    x-init="init()"
     x-on:click.away="cancel()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
@@ -81,15 +80,13 @@
 <script>
     function autocomplete(config) {
         return {
-            resultsProperty: null,
-            inputProperty: null,
+            resultsProperty: config.resultsProperty,
+            inputProperty: config.inputProperty,
             focusIndex: null,
             showDropdown: false,
             countResults: 0,
 
-            init(config) {
-                this.resultsProperty = config.resultsProperty
-                this.inputProperty = config.inputProperty
+            init() {
                 this.countResults = this.$wire.get(this.resultsProperty).length
 
                 Livewire.hook('message.processed', (message, component) => {
