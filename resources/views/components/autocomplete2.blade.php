@@ -1,5 +1,4 @@
 @props([
-    'results',
     'resultComponent',
     'inputProperty',
     'resultsProperty',
@@ -59,7 +58,7 @@
                 </svg>
             </div>
             <div x-on:click="selectItem($dispatch)">
-                @foreach($results as $key => $result)
+                @foreach($this->$resultsProperty as $key => $result)
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
