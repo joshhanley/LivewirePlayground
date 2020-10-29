@@ -5,15 +5,19 @@
                 wire:model.debounce.300ms="userInput"
                 :results="$this->users"
                 result-component="user-item"
-                item-selected-event="user-selected"
-                value=""
+                item-selected-method="selectUser"
                 inline
-                wire:key="1"
             />
 
             <div class="flex flex-col space-y-4">
                 <div>
-                    Users Filtered
+                <span class="font-bold">User</span>
+                <ul>
+                    <li>{{ $user->name }}</li>
+                </ul>
+            </div>
+                <div>
+                    <span class="font-bold">Users Filtered</span>
                     <ul>
                         @foreach($users as $user)
                         <li>{{ $user->name }}</li>
@@ -22,7 +26,7 @@
                 </div>
 
                 <div>
-                    Users All
+                    <span class="font-bold">Users All</span>
                     <ul>
                         @foreach($allUsers as $user)
                         <li>{{ $user->name }}</li>

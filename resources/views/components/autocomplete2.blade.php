@@ -1,16 +1,11 @@
 @props([
     'results',
     'resultComponent',
+    'itemSelectedMethod',
     'inline' => null,
-    'itemSelectedEvent',
-    'value'
 ])
 <div
-    x-data="autocomplete({
-        'itemSelectedEvent': '{{ $itemSelectedEvent }}',
-        'search': '{{ $value }}',
-        'countResults': {{ count($results) }},
-    })"
+    x-data="autocomplete()"
     x-init="init()"
     x-on:click.away="cancel()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
@@ -64,7 +59,7 @@
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
-                        wire:key="{{ $itemSelectedEvent.$key }}"
+                        wire:key="{{ $itemSelectedMethod.$key }}"
                         x-on:mouseenter="focusIndex = {{ $key }}"
                         x-on:mouseenter="focusIndex = null"
                         x-on:click="selectItem($dispatch)"
@@ -81,17 +76,22 @@
 <script>
     function autocomplete(config) {
         return {
-            search: config.search,
+            search: null,
             focusIndex: null,
             showDropdown: false,
-            countResults: config.countResults,
-            itemSelectedEvent: config.itemSelectedEvent,
+            countResults: 0,
 
             init() {
+                this.countResults = this.$wire.users.length
+                this.search = this.$wire.userInput
+
+                Livewire.hook('message.processed', (message, component) => {
+                    this.countResults = this.$wire.users.length
+                    this.search = this.$wire.userInput
+                })
+
                 this.$watch('search', () => {
                     this.clearFocus()
-
-                    // this.countResults =
                 })
             },
 
@@ -157,7 +157,7 @@
             },
 
             selectItem($dispatch) {
-                $dispatch(this.itemSelectedEvent, { 'index': this.focusIndex });
+                this.$wire.call('{{ $itemSelectedMethod }}', this.focusIndex)
 
                 this.hide()
                 this.clearFocus()
