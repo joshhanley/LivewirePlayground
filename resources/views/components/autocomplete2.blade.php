@@ -41,7 +41,7 @@
     </div>
 
     <div
-        x-show="showDropdown"
+        x-show="showDropdown && hasResults()"
         class="w-full p-2 overflow-y-hidden text-sm rounded border border-cool-gray-300 bg-cool-gray-50 shadow-inner {{ $inline ? 'lg:block' : 'lg:absolute'}} lg:p-0 lg:overflow-y-auto lg:max-h-96  lg:left-2 lg:mt-2 lg:w-56 lg:z-20 lg:border-cool-gray-400 lg:bg-white lg:shadow-lg"
         x-transition:enter="transition ease-out duration-100 origin-top"
         x-transition:enter-start="transform opacity-0 scale-y-90"
@@ -107,16 +107,24 @@
                 this.focusIndex = null;
             },
 
+            hasResults() {
+                return this.totalResults() > 0
+            },
+
             hasNoResults() {
-                return this.totalResults() <= 0
+                return ! this.hasResults()
             },
 
             totalResults() {
                 return this.results.length;
             },
 
+            hasFocus() {
+                return this.focusIndex !== null
+            },
+
             hasNoFocus() {
-                return this.focusIndex == null
+                return ! this.hasFocus()
             },
 
             focusIsAtStart() {
@@ -156,7 +164,7 @@
             },
 
             selectItem() {
-                this.$wire.call(this.selectAction, this.focusIndex)
+                if (this.hasFocus()) this.$wire.call(this.selectAction, this.focusIndex)
 
                 this.close()
             }
