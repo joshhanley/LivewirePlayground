@@ -8,7 +8,7 @@
     'inline' => null,
     'grouped' => null,
 ])
-{{-- TODO - JH 30/10/2020: Return to selected on escape/tab, highlight selected on focus --}}
+{{-- TODO - JH 30/10/2020: Return to selected on escape/tab, add grouped footer --}}
 <div
     x-data="autocomplete({
         'selectAction': '{{ $selectAction }}',
