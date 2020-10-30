@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Livewire\Component;
 
 class Main extends Component
@@ -81,7 +82,7 @@ class Main extends Component
 
     public function selectGroupedItem($focusIndex)
     {
-        $this->groupedItem = $this->groupedItems[$focusIndex] ?? null;
+        $this->groupedItem = Arr::flatten($this->groupedItems, 1)[$focusIndex] ?? null;
         $this->groupedItemInput = $this->groupedItem;
     }
 
