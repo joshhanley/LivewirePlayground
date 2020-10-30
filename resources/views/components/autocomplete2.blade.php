@@ -23,6 +23,7 @@
             x-on:keydown.tab="tab()"
             x-on:keydown.shift.window="shift(true)"
             x-on:keyup.shift.window="shift(false)"
+            x-on:blur.window="shift(false)"
             x-on:keydown.escape.prevent="close(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem(); event.target.blur()"
             x-on:keydown.arrow-up.prevent="focusPrevious()"
