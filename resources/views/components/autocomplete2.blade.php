@@ -2,7 +2,7 @@
     'name' => null,
     'placeholder' => '',
     'selectAction',
-    'resultComponent',
+    'listItemComponent' => null,
     'resultsProperty',
     'inline' => null,
 ])
@@ -69,7 +69,11 @@
                         class="px-2"
                         x-on:mouseenter="focusIndex = {{ $key }}"
                     >
-                        <x-dynamic-component :component="$resultComponent" :model="$result" />
+                        @if($listItemComponent)
+                            <x-dynamic-component :component="$listItemComponent" :model="$result" />
+                        @else
+                            <div>{{ $result }}</div>
+                        @endif
                     </div>
                 @endforeach
             </div>

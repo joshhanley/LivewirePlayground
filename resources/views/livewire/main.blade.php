@@ -6,7 +6,7 @@
                     wire:model.debounce.300ms="userInput"
                     select-action="selectUser"
                     results-property="users"
-                    result-component="user-item"
+                    list-item-component="user-item"
                     inline
                 />
 
@@ -45,7 +45,7 @@
                     wire:model.debounce.300ms="userInput2"
                     select-action="selectUser2"
                     results-property="users2"
-                    result-component="user-item"
+                    list-item-component="user-item"
                     inline
                 />
 
