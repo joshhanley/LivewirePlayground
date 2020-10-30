@@ -44,6 +44,7 @@
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput2"
                     select-action="selectUser2"
+                    select-on-tab="false"
                     results-property="users2"
                     list-item-component="user-item"
                     inline
