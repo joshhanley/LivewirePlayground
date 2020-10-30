@@ -128,6 +128,7 @@
             focusIndex: null,
             showDropdown: false,
             shiftIsPressed: false,
+            countResults: null,
 
             show() {
                 this.showDropdown = true
@@ -155,7 +156,9 @@
             },
 
             clearFocus() {
-                this.focusIndex = null;
+                this.focusIndex = null
+
+                this.countResults = null
             },
 
             hasResults() {
@@ -167,11 +170,13 @@
             },
 
             totalResults() {
+                if(this.countResults) return this.countResults
+
                 if (this.isGrouped) {
-                    return Object.values(this.results).reduce((count, row) => count + row.length, 0)
+                    return this.countResults = Object.values(this.results).reduce((count, row) => count + row.length, 0)
                 }
 
-                return this.results.length
+                return this.countResults = this.results.length
             },
 
             hasFocus() {
