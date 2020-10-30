@@ -108,6 +108,34 @@ class Main extends Component
         $this->getGroupedItems();
     }
 
+    public function clearUser()
+    {
+        $this->user = new User();
+        $this->userInput = $this->user->name;
+        $this->getUsers();
+    }
+
+    public function clearUser2()
+    {
+        $this->user2 = new User();
+        $this->userInput2 = $this->user2->name;
+        $this->getUsers2();
+    }
+
+    public function clearGenericItem()
+    {
+        $this->genericItem = null;
+        $this->genericItemInput = $this->genericItem;
+    }
+
+    public function clearGroupedItem()
+    {
+        $this->groupedItem = null;
+        $this->groupedItemInput = $this->groupedItem;
+
+        $this->getGroupedItems();
+    }
+
     public function updatedUserInput()
     {
         $this->getUsers();

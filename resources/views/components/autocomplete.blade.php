@@ -2,6 +2,7 @@
     'name' => null,
     'placeholder' => '',
     'selectAction',
+    'clearAction',
     'selectOnTab' => true,
     'listItemComponent' => null,
     'resultsProperty',
@@ -12,6 +13,7 @@
 <div
     x-data="autocomplete({
         'selectAction': '{{ $selectAction }}',
+        'clearAction': '{{ $clearAction }}',
         'selectOnTab': {{ $selectOnTab ? 'true' : 'false' }},
         'results': @entangle($resultsProperty),
         'isGrouped': {{ $grouped ? 'true' : 'false' }}
@@ -50,7 +52,7 @@
                 placeholder="{{ $placeholder }}"
                 autocomplete="off"
             />
-            <div class="absolute right-0 inset-y-0 pr-4">x</div>
+            <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 pr-4">x</div>
         </div>
     </div>
 
@@ -127,6 +129,7 @@
     function autocomplete(config) {
         return {
             selectAction: config.selectAction,
+            clearAction: config.clearAction,
             selectOnTab: config.selectOnTab,
             results: config.results,
             isGrouped: config.isGrouped,
@@ -242,6 +245,10 @@
                 if (this.hasFocus()) this.$wire.call(this.selectAction, this.focusIndex)
 
                 this.close()
+            },
+
+            clearItem() {
+                this.$wire.call(this.clearAction)
             }
         }
     }

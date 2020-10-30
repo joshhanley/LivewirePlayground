@@ -5,6 +5,7 @@
             <x-autocomplete
                     wire:model.debounce.300ms="userInput"
                     select-action="selectUser"
+                    clear-action="clearUser"
                     results-property="users"
                     list-item-component="user-item"
                     inline
@@ -44,6 +45,7 @@
             <x-autocomplete
                     wire:model.debounce.300ms="userInput2"
                     select-action="selectUser2"
+                    clear-action="clearUser2"
                     select-on-tab="false"
                     results-property="users2"
                     list-item-component="user-item"
@@ -83,6 +85,7 @@
             <x-autocomplete
                     wire:model.debounce.300ms="genericItemInput"
                     select-action="selectGenericItem"
+                    clear-action="clearGenericItem"
                     results-property="genericItems"
                     inline
                 />
@@ -111,6 +114,7 @@
             <x-autocomplete
                     wire:model.debounce.300ms="groupedItemInput"
                     select-action="selectGroupedItem"
+                    clear-action="clearGroupedItem"
                     results-property="groupedItems"
                     inline
                     grouped
