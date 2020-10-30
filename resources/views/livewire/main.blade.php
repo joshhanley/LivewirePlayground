@@ -104,9 +104,40 @@
                         @endforeach
                     </ul>
                 </div>
+            </div>
+        </div>
+
+        <div wire:key="4">
+            {{-- <x-autocomplete
+                    wire:model.debounce.300ms="groupedItemInput"
+                    select-action="selectGroupedItem"
+                    results-property="groupedItems"
+                    inline
+                /> --}}
+
+            <div class="flex flex-col space-y-4">
+                <div>
+                    <span class="font-bold">Grouped Item</span>
+                    <ul>
+                        <li>Input:{{ $groupedItemInput }}</li>
+                        <li>{{ $groupedItem }}</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="font-bold">Grouped Items Filtered</span>
+                    @foreach($groupedItems as $groupName => $group)
+                        <span class="font-bold">{{ $groupName }}</span>
+                        <ul>
+                            @foreach($group as $groupedItemLoop)
+                            <li>{{ $groupedItemLoop }}</li>
+                            @endforeach
+                        </ul>
+                    @endforeach
                 </div>
             </div>
         </div>
+
 
 
     </div>

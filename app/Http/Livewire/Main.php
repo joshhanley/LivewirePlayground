@@ -10,14 +10,21 @@ class Main extends Component
     public $users;
     public $users2;
     public $genericItems = [1,2,3,4,5,6,7,8];
+    public $groupedItems = [
+        'first' => [1,2,3],
+        'second' => [4,5,6],
+        'third' => [7,8,9]
+    ];
 
     public $user;
     public $user2;
     public $genericItem;
+    public $groupedItem;
 
     public $userInput;
     public $userInput2;
     public $genericItemInput;
+    public $groupedItemInput;
 
     public $allUsers;
 
@@ -48,6 +55,10 @@ class Main extends Component
     {
     }
 
+    public function getGroupedItems()
+    {
+    }
+
     public function selectUser($focusIndex)
     {
         $this->user = $this->users[$focusIndex] ?? new User();
@@ -66,6 +77,12 @@ class Main extends Component
     {
         $this->genericItem = $this->genericItems[$focusIndex] ?? null;
         $this->genericItemInput = $this->genericItem;
+    }
+
+    public function selectGroupedItem($focusIndex)
+    {
+        $this->groupedItem = $this->groupedItems[$focusIndex] ?? null;
+        $this->groupedItemInput = $this->groupedItem;
     }
 
     public function updatedUserInput()
