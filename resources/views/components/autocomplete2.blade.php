@@ -1,4 +1,6 @@
 @props([
+    'name' => null,
+    'placeholder' => '',
     'selectAction',
     'resultComponent',
     'resultsProperty',
@@ -26,8 +28,8 @@
             x-on:input.debounce.300ms="clearFocus()"
             class=" w-56 px-2 rounded border border-cool-gray-500"
             type="text"
-            name="search"
-            placeholder="Search"
+            name="{{ $name ?? $attributes->wire('model')->value }}"
+            placeholder="{{ $placeholder }}"
             autocomplete="off"
             />
 
