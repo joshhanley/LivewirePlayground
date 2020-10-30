@@ -21,9 +21,9 @@
             {{ $attributes->wire('model') }}
             x-on:focus="show()"
             x-on:keydown.tab="tab()"
-            x-on:keydown.shift.window="shift(true)"
-            x-on:keyup.shift.window="shift(false)"
-            x-on:blur.window="shift(false)"
+            x-on:keydown.shift.window="shift(true)" {{-- Detect shift on window otherwise shift+tab from another field not recognised --}}
+            x-on:keyup.shift.window="shift(false)" {{-- Detect shift on window otherwise shift+tab from another field not recognised --}}
+            x-on:blur.window="shift(false)" {{-- Clear shift on window blur otherwise can't select --}}
             x-on:keydown.escape.prevent="close(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem(); event.target.blur()"
             x-on:keydown.arrow-up.prevent="focusPrevious()"
