@@ -2,6 +2,7 @@
     'name' => null,
     'placeholder' => '',
     'selectAction',
+    'selectOnTab' => true,
     'listItemComponent' => null,
     'resultsProperty',
     'inline' => null,
@@ -9,6 +10,7 @@
 <div
     x-data="autocomplete({
         'selectAction': '{{ $selectAction }}',
+        'selectOnTab': {{ $selectOnTab }},
         'results': @entangle($resultsProperty)
     })"
     x-on:click.away="close()"
@@ -18,7 +20,7 @@
         <input
             {{ $attributes->wire('model') }}
             x-on:focus="show()"
-            x-on:keydown.tab="close()"
+            x-on:keydown.tab="tab()"
             x-on:keydown.escape.prevent="close(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem(); event.target.blur()"
             x-on:keydown.arrow-up.prevent="focusPrevious()"
@@ -86,6 +88,7 @@
     function autocomplete(config) {
         return {
             selectAction: config.selectAction,
+            selectOnTab: config.selectOnTab,
             results: config.results,
             focusIndex: null,
             showDropdown: false,
@@ -96,6 +99,12 @@
 
             hide() {
                 this.showDropdown = false
+            },
+
+            tab() {
+                if(this.selectOnTab) return this.selectItem()
+
+                return this.close()
             },
 
             close() {
