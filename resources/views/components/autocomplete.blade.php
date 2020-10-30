@@ -57,9 +57,8 @@
                 @endif
             />
 
-            <div>
+            <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 flex items-center">
                 @if($this->{$attributes->wire('model')})
-                <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 flex items-center">
                     @if($delete)
                         {{ $delete }}
                     @else
@@ -69,7 +68,6 @@
                             </svg>
                         </div>
                     @endif
-                </div>
                 @endif
             </div>
         </div>
