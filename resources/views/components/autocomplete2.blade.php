@@ -7,6 +7,7 @@
     'resultsProperty',
     'inline' => null,
 ])
+{{-- TODO - JH 30/10/2020: Handle delete key, clear selected item, return to selected on escape/tab, highlight selected on focus --}}
 <div
     x-data="autocomplete({
         'selectAction': '{{ $selectAction }}',
