@@ -108,12 +108,13 @@
         </div>
 
         <div wire:key="4">
-            {{-- <x-autocomplete
+            <x-autocomplete
                     wire:model.debounce.300ms="groupedItemInput"
                     select-action="selectGroupedItem"
                     results-property="groupedItems"
                     inline
-                /> --}}
+                    grouped
+                />
 
             <div class="flex flex-col space-y-4">
                 <div>
@@ -127,7 +128,7 @@
                 <div>
                     <span class="font-bold">Grouped Items Filtered</span>
                     @foreach($groupedItems as $groupName => $group)
-                        <span class="font-bold">{{ $groupName }}</span>
+                        <span class="block font-bold">{{ $groupName }}</span>
                         <ul>
                             @foreach($group as $groupedItemLoop)
                             <li>{{ $groupedItemLoop }}</li>

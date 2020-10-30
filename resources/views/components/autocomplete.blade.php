@@ -6,13 +6,15 @@
     'listItemComponent' => null,
     'resultsProperty',
     'inline' => null,
+    'grouped' => null,
 ])
 {{-- TODO - JH 30/10/2020: Handle delete key, clear selected item, return to selected on escape/tab, highlight selected on focus --}}
 <div
     x-data="autocomplete({
         'selectAction': '{{ $selectAction }}',
-        'selectOnTab': {{ $selectOnTab }},
-        'results': @entangle($resultsProperty)
+        'selectOnTab': {{ $selectOnTab ? 'true' : 'false' }},
+        'results': @entangle($resultsProperty),
+        'isGrouped': {{ $grouped ? 'true' : 'false' }}
     })"
     x-on:click.away="close()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
@@ -70,19 +72,46 @@
                 x-on:mouseleave="focusIndex = null"
                 x-on:click="selectItem()"
             >
-                @foreach($this->$resultsProperty as $key => $result)
-                    <div
-                        :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
-                        class="px-2"
-                        x-on:mouseenter="focusIndex = {{ $key }}"
-                    >
-                        @if($listItemComponent)
-                            <x-dynamic-component :component="$listItemComponent" :model="$result" />
-                        @else
-                            <div>{{ $result }}</div>
-                        @endif
-                    </div>
-                @endforeach
+                @if($grouped)
+                    @php
+                        $index = 0
+                    @endphp
+
+                    @foreach($this->$resultsProperty as $group => $results)
+                        <div class="px-2 font-bold border-b border-gray-300">{{ $group }}</div>
+
+                        @foreach($results as $key => $result)
+                            <div
+                                :class="{ 'bg-blue-500' : focusIndex == {{ $index }}}"
+                                class="px-2"
+                                x-on:mouseenter="focusIndex = {{ $index }}"
+                            >
+                                @if($listItemComponent)
+                                    <x-dynamic-component :component="$listItemComponent" :model="$result" />
+                                @else
+                                    <div>{{ $result }}</div>
+                                @endif
+                            </div>
+                            @php
+                                $index++;
+                            @endphp
+                        @endforeach
+                    @endforeach
+                @else
+                    @foreach($this->$resultsProperty as $key => $result)
+                        <div
+                            :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
+                            class="px-2"
+                            x-on:mouseenter="focusIndex = {{ $key }}"
+                        >
+                            @if($listItemComponent)
+                                <x-dynamic-component :component="$listItemComponent" :model="$result" />
+                            @else
+                                <div>{{ $result }}</div>
+                            @endif
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -95,6 +124,7 @@
             selectAction: config.selectAction,
             selectOnTab: config.selectOnTab,
             results: config.results,
+            isGrouped: config.isGrouped,
             focusIndex: null,
             showDropdown: false,
             shiftIsPressed: false,
@@ -137,7 +167,11 @@
             },
 
             totalResults() {
-                return this.results.length;
+                if (this.isGrouped) {
+                    return Object.values(this.results).reduce((count, row) => count + row.length, 0)
+                }
+
+                return this.results.length
             },
 
             hasFocus() {
