@@ -2,7 +2,7 @@
     <div class="flex flex space-x-4">
 
         <div wire:key="1">
-            <x-autocomplete2
+            <x-autocomplete
                     wire:model.debounce.300ms="userInput"
                     select-action="selectUser"
                     results-property="users"
@@ -41,7 +41,7 @@
         </div>
 
         <div wire:key="2">
-            <x-autocomplete2
+            <x-autocomplete
                     wire:model.debounce.300ms="userInput2"
                     select-action="selectUser2"
                     select-on-tab="false"
@@ -80,7 +80,7 @@
         </div>
 
         <div wire:key="3">
-            <x-autocomplete2
+            <x-autocomplete
                     wire:model.debounce.300ms="genericItemInput"
                     select-action="selectGenericItem"
                     results-property="genericItems"
