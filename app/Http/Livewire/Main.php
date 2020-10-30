@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
 class Main extends Component
@@ -11,11 +12,7 @@ class Main extends Component
     public $users;
     public $users2;
     public $genericItems = [1,2,3,4,5,6,7,8];
-    public $groupedItems = [
-        'first' => [1,2,3],
-        'second' => [4,5,6],
-        'third' => [7,8,9]
-    ];
+    public $groupedItems = [];
 
     public $user;
     public $user2;
@@ -28,6 +25,11 @@ class Main extends Component
     public $groupedItemInput;
 
     public $allUsers;
+    public $groupedItemsAll = [
+        'first' => [1,2,3],
+        'second' => [4,15,16],
+        'third' => [7,8,111]
+    ];
 
     public function mount()
     {
@@ -40,6 +42,8 @@ class Main extends Component
         $this->user2 = new User();
         $this->userInput2 = $this->user2->name;
         $this->getUsers2();
+
+        $this->getGroupedItems();
     }
 
     public function getUsers()
@@ -58,6 +62,22 @@ class Main extends Component
 
     public function getGroupedItems()
     {
+        if ($this->groupedItemInput) {
+            return $this->groupedItems = collect($this->groupedItemsAll)
+                ->mapWithKeys(function ($item, $key) {
+                    $results = collect($item)
+                        ->filter(function ($value) {
+                            return Str::contains($value, $this->groupedItemInput);
+                        })
+                        ->values()
+                        ->toArray();
+
+                    return [$key => $results];
+                })
+                ->toArray();
+        }
+
+        $this->groupedItems = $this->groupedItemsAll;
     }
 
     public function selectUser($focusIndex)
@@ -84,6 +104,8 @@ class Main extends Component
     {
         $this->groupedItem = Arr::flatten($this->groupedItems, 1)[$focusIndex] ?? null;
         $this->groupedItemInput = $this->groupedItem;
+
+        $this->getGroupedItems();
     }
 
     public function updatedUserInput()
@@ -94,6 +116,11 @@ class Main extends Component
     public function updatedUserInput2()
     {
         $this->getUsers2();
+    }
+
+    public function updatedGroupedItemInput()
+    {
+        $this->getGroupedItems();
     }
 
     public function render()
