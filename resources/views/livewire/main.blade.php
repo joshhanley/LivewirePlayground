@@ -47,7 +47,7 @@
                     select-on-tab="false"
                     results-property="users2"
                     list-item-component="user-item"
-                    inline
+                    {{-- inline --}}
                 />
 
             <div class="flex flex-col space-y-4">

@@ -19,7 +19,7 @@
     x-init="init()"
     x-on:click.away="close()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
-    class="w-56"
+    class="w-56 relative"
 >
     <div>
         Show:<span x-text="showDropdown ? 'true' : 'false'"></span>
@@ -56,7 +56,7 @@
 
     <div
         x-show="showDropdown && hasResults()"
-        class="relative {{ $inline ? 'block' : 'absolute z-20'}} w-full h-56 overflow-y-auto text-sm rounded border border-cool-gray-500 bg-white shadow-lg"
+        class="{{ $inline ? 'block relative' : 'absolute z-20'}} w-full h-56 overflow-y-hidden text-sm rounded border border-cool-gray-500 bg-white shadow-lg"
         x-transition:enter="transition ease-out duration-100 origin-top"
         x-transition:enter-start="transform opacity-0 scale-y-90"
         x-transition:enter-end="transform opacity-100 scale-y-100"
@@ -76,6 +76,7 @@
         <div
             x-on:mouseleave="focusIndex = null"
             x-on:click="selectItem()"
+            class="h-full overflow-y-auto"
         >
             @if($grouped)
                 @php
