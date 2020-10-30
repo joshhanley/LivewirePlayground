@@ -10,9 +10,9 @@
                     list-item-component="user-item"
                     inline
                 >
-                <x-slot name="delete">
+                <x-slot name="clear">
                     <div class="pr-2 cursor-default hover:text-gray-700">
-                        Delete
+                        Clear
                     </div>
                 </x-slot>
             </x-autocomplete>

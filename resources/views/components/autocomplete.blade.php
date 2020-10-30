@@ -8,7 +8,7 @@
     'resultsProperty',
     'inline' => null,
     'grouped' => null,
-    'delete' => null,
+    'clear' => null,
 ])
 {{-- TODO - JH 30/10/2020: Return to selected on escape/tab, add grouped footer --}}
 <div
@@ -59,8 +59,8 @@
 
             <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 flex items-center">
                 @if($this->{$attributes->wire('model')})
-                    @if($delete)
-                        {{ $delete }}
+                    @if($clear)
+                        {{ $clear }}
                     @else
                         <div class="pr-2">
                             <svg class="h-5 w-5 text-gray-700 fill-current transition-transform ease-in-out duration-100 transform hover:scale-105 hover:text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
