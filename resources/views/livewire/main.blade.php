@@ -78,6 +78,35 @@
             </div>
         </div>
 
+        <div wire:key="3">
+            <x-autocomplete2
+                    wire:model.debounce.300ms="genericItemInput"
+                    select-action="selectGenericItem"
+                    results-property="genericItems"
+                    inline
+                />
+
+            <div class="flex flex-col space-y-4">
+                <div>
+                    <span class="font-bold">Generic Item</span>
+                    <ul>
+                        <li>Input:{{ $genericItemInput }}</li>
+                        <li>{{ $genericItem }}</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <span class="font-bold">Generic Items Filtered</span>
+                    <ul>
+                        @foreach($genericItems as $genericItemLoop)
+                        <li>{{ $genericItemLoop }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </div>
