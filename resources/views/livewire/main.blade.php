@@ -4,7 +4,7 @@
         <div wire:key="1">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput"
-                    wire:select-item="selectUser"
+                    select-action="selectUser"
                     results-property="users"
                     result-component="user-item"
                     inline
@@ -43,7 +43,7 @@
         <div wire:key="2">
             <x-autocomplete2
                     wire:model.debounce.300ms="userInput2"
-                    wire:select-item="selectUser2"
+                    select-action="selectUser2"
                     results-property="users2"
                     result-component="user-item"
                     inline
@@ -53,6 +53,7 @@
                 <div>
                     <span class="font-bold">User</span>
                     <ul>
+                        <li>Input:{{ $userInput2 }}</li>
                         <li>{{ $user2->name }}</li>
                     </ul>
                 </div>

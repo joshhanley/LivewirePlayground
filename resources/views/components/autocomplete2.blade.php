@@ -1,22 +1,24 @@
 @props([
+    'selectAction',
     'resultComponent',
     'resultsProperty',
     'inline' => null,
 ])
 <div
     x-data="autocomplete({
+        'selectAction': '{{ $selectAction }}',
         'results': @entangle($resultsProperty)
     })"
-    x-on:click.away="cancel()"
+    x-on:click.away="close()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
     <div class="flex flex-col">
         <input
             {{ $attributes->wire('model') }}
             x-on:focus="show()"
-            x-on:keydown.tab="cancel()"
-            x-on:keydown.escape.prevent="cancel(); event.target.blur()"
-            x-on:keydown.enter.stop.prevent="selectItem($dispatch); event.target.blur()"
+            x-on:keydown.tab="close()"
+            x-on:keydown.escape.prevent="close(); event.target.blur()"
+            x-on:keydown.enter.stop.prevent="selectItem(); event.target.blur()"
             x-on:keydown.arrow-up.prevent="focusPrevious()"
             x-on:keydown.arrow-down.prevent="focusNext()"
             x-on:keydown.home.prevent="focusFirst()"
@@ -55,14 +57,15 @@
                     <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
             </div>
-            <div x-on:click="selectItem($dispatch)">
+            <div
+                x-on:mouseleave="focusIndex = null"
+                x-on:click="selectItem()"
+            >
                 @foreach($this->$resultsProperty as $key => $result)
                     <div
                         :class="{ 'bg-blue-500' : focusIndex == {{ $key }}}"
                         class="px-2"
-                        wire:key="{{ $attributes->wire('model')->value.$key }}"
                         x-on:mouseenter="focusIndex = {{ $key }}"
-                        x-on:mouseenter="focusIndex = null"
                     >
                         <x-dynamic-component :component="$resultComponent" :model="$result" />
                     </div>
@@ -76,6 +79,7 @@
 <script>
     function autocomplete(config) {
         return {
+            selectAction: config.selectAction,
             results: config.results,
             focusIndex: null,
             showDropdown: false,
@@ -88,7 +92,7 @@
                 this.showDropdown = false
             },
 
-            cancel() {
+            close() {
                 this.hide()
                 this.clearFocus();
             },
@@ -145,11 +149,10 @@
                 this.focusIndex++
             },
 
-            selectItem($dispatch) {
-                $dispatch('select-item', this.focusIndex.toString())
+            selectItem() {
+                this.$wire.call(this.selectAction, this.focusIndex)
 
-                this.hide()
-                this.clearFocus()
+                this.close()
             }
         }
     }
