@@ -8,6 +8,7 @@
     'resultsProperty',
     'inline' => null,
     'grouped' => null,
+    'delete' => null,
 ])
 {{-- TODO - JH 30/10/2020: Return to selected on escape/tab, add grouped footer --}}
 <div
@@ -58,10 +59,16 @@
 
             <div>
                 @if($this->{$attributes->wire('model')})
-                <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 pr-2 flex items-center text-gray-700">
-                    <svg class="h-5 w-5 fill-current transition-transform ease-in-out duration-100 transform hover:scale-105 hover:text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path>
-                    </svg>
+                <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 flex items-center">
+                    @if($delete)
+                        {{ $delete }}
+                    @else
+                        <div class="pr-2">
+                            <svg class="h-5 w-5 text-gray-700 fill-current transition-transform ease-in-out duration-100 transform hover:scale-105 hover:text-black" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"></path>
+                            </svg>
+                        </div>
+                    @endif
                 </div>
                 @endif
             </div>

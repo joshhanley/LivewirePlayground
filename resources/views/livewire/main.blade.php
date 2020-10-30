@@ -9,7 +9,13 @@
                     results-property="users"
                     list-item-component="user-item"
                     inline
-                />
+                >
+                <x-slot name="delete">
+                    <div class="pr-2 cursor-default hover:text-gray-700">
+                        Delete
+                    </div>
+                </x-slot>
+            </x-autocomplete>
 
             <div class="flex flex-col space-y-4">
                 <div>
