@@ -21,6 +21,8 @@
             {{ $attributes->wire('model') }}
             x-on:focus="show()"
             x-on:keydown.tab="tab()"
+            x-on:keydown.shift="shift(true)"
+            x-on:keyup.shift="shift(false)"
             x-on:keydown.escape.prevent="close(); event.target.blur()"
             x-on:keydown.enter.stop.prevent="selectItem(); event.target.blur()"
             x-on:keydown.arrow-up.prevent="focusPrevious()"
@@ -92,6 +94,7 @@
             results: config.results,
             focusIndex: null,
             showDropdown: false,
+            shiftIsPressed: false,
 
             show() {
                 this.showDropdown = true
@@ -102,9 +105,18 @@
             },
 
             tab() {
+                if(this.shiftIsPressed) {
+                    this.close()
+                    this.shift(false)
+                }
+
                 if(this.selectOnTab) return this.selectItem()
 
                 return this.close()
+            },
+
+            shift(isPressed) {
+                this.shiftIsPressed = isPressed
             },
 
             close() {
