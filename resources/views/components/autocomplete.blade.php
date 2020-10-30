@@ -16,6 +16,7 @@
         'results': @entangle($resultsProperty),
         'isGrouped': {{ $grouped ? 'true' : 'false' }}
     })"
+    x-init="init()"
     x-on:click.away="close()"
     {{ $attributes->whereDoesntStartWith('wire:model') }}
 >
@@ -128,7 +129,11 @@
             focusIndex: null,
             showDropdown: false,
             shiftIsPressed: false,
-            countResults: null,
+            resultsCount: null,
+
+            init() {
+                this.$watch('results', () => this.clearResultsCount())
+            },
 
             show() {
                 this.showDropdown = true
@@ -157,8 +162,6 @@
 
             clearFocus() {
                 this.focusIndex = null
-
-                this.countResults = null
             },
 
             hasResults() {
@@ -169,14 +172,18 @@
                 return ! this.hasResults()
             },
 
+            clearResultsCount() {
+                this.resultsCount = null
+            },
+
             totalResults() {
-                if(this.countResults) return this.countResults //Use memoised count
+                if(this.resultsCount) return this.resultsCount //Use memoised count
 
                 if (this.isGrouped) {
-                    return this.countResults = this.totalGroupedResults()
+                    return this.resultsCount = this.totalGroupedResults()
                 }
 
-                return this.countResults = this.results.length
+                return this.resultsCount = this.results.length
             },
 
             totalGroupedResults() {
