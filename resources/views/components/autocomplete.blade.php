@@ -5,9 +5,11 @@
     'clearAction',
     'selectOnTab' => true,
     'listItemComponent' => null,
+    'selectedProperty',
     'resultsProperty',
     'inline' => null,
     'grouped' => null,
+    'leadingAddon' => null,
     'clear' => null,
 ])
 {{-- TODO - JH 30/10/2020: Return to selected on escape/tab, add grouped footer --}}
@@ -29,10 +31,17 @@
         Shift:<span x-text="shiftIsPressed ? 'true' : 'false'"></span>
         Focus:<span x-text="focusIndex"></span>
         Total:<span x-text="totalResults()"></span>
+        {{-- Selected:{{ $this->{$selectedProperty} }} --}}
     </div>
 
     <div class="flex flex-col">
         <div class="relative">
+            <div class="absolute left-0 inset-y-0 flex items-center">
+                    @if($leadingAddon)
+                        {{ $leadingAddon }}
+                    @endif
+            </div>
+
             <input
                 {{ $attributes->wire('model') }}
                 x-on:focus="show()"
@@ -47,18 +56,18 @@
                 x-on:keydown.home.prevent="focusFirst()"
                 x-on:keydown.end.prevent="focusLast()"
                 x-on:input.debounce.300ms="clearFocus()"
-                class="w-full px-2 rounded border border-cool-gray-500 {{ $this->{$attributes->wire('model')} ? 'bg-gray-300' : null }}"
+                class="w-full {{ $leadingAddon ? 'pl-8' : 'pl-2' }} {{ $this->{$selectedProperty} ? 'pr-8 bg-gray-300' : 'pr-2' }} rounded border border-cool-gray-500"
                 type="text"
                 name="{{ $name ?? $attributes->wire('model')->value }}"
                 placeholder="{{ $placeholder }}"
                 autocomplete="off"
-                @if($this->{$attributes->wire('model')})
+                @if($this->{$selectedProperty})
                 disabled
                 @endif
             />
 
             <div x-on:click="clearItem()" class="absolute right-0 inset-y-0 flex items-center">
-                @if($this->{$attributes->wire('model')})
+                @if($this->{$selectedProperty})
                     @if($clear)
                         {{ $clear }}
                     @else

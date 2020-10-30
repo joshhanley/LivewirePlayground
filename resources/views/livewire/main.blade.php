@@ -6,15 +6,21 @@
                     wire:model.debounce.300ms="userInput"
                     select-action="selectUser"
                     clear-action="clearUser"
+                    selected-property="user"
                     results-property="users"
                     list-item-component="user-item"
                     inline
                 >
-                <x-slot name="clear">
+                <x-slot name="leadingAddon">
+                    <div class="pl-2 cursor-default">
+                        A
+                    </div>
+                </x-slot>
+                {{-- <x-slot name="clear">
                     <div class="pr-2 cursor-default hover:text-gray-700">
                         Clear
                     </div>
-                </x-slot>
+                </x-slot> --}}
             </x-autocomplete>
 
             <div class="flex flex-col space-y-4">
@@ -22,7 +28,7 @@
                     <span class="font-bold">User</span>
                     <ul>
                         <li>Input:{{ $userInput }}</li>
-                        <li>{{ $user->name }}</li>
+                        <li>{{ $user->name ?? null }}</li>
                     </ul>
                 </div>
 
@@ -53,6 +59,7 @@
                     select-action="selectUser2"
                     clear-action="clearUser2"
                     select-on-tab="false"
+                    selected-property="user2"
                     results-property="users2"
                     list-item-component="user-item"
                     {{-- inline --}}
@@ -63,7 +70,7 @@
                     <span class="font-bold">User</span>
                     <ul>
                         <li>Input:{{ $userInput2 }}</li>
-                        <li>{{ $user2->name }}</li>
+                        <li>{{ $user2->name ?? null }}</li>
                     </ul>
                 </div>
 
@@ -92,6 +99,7 @@
                     wire:model.debounce.300ms="genericItemInput"
                     select-action="selectGenericItem"
                     clear-action="clearGenericItem"
+                    selected-property="genericItem"
                     results-property="genericItems"
                     inline
                 />
@@ -121,6 +129,7 @@
                     wire:model.debounce.300ms="groupedItemInput"
                     select-action="selectGroupedItem"
                     clear-action="clearGroupedItem"
+                    selected-property="groupedItem"
                     results-property="groupedItems"
                     inline
                     grouped

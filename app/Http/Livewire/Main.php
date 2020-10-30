@@ -34,13 +34,13 @@ class Main extends Component
     public function mount()
     {
         $this->allUsers = User::all();
-        $this->user = new User();
-        $this->userInput = $this->user->name;
+        // $this->user = new User();
+        // $this->userInput = $this->user->name;
         $this->getUsers();
 
 
-        $this->user2 = new User();
-        $this->userInput2 = $this->user2->name;
+        // $this->user2 = new User();
+        // $this->userInput2 = $this->user2->name;
         $this->getUsers2();
 
         $this->getGroupedItems();
@@ -82,15 +82,15 @@ class Main extends Component
 
     public function selectUser($focusIndex)
     {
-        $this->user = $this->users[$focusIndex] ?? new User();
-        $this->userInput = $this->user->name;
+        $this->user = $this->users[$focusIndex] ?? null;
+        $this->userInput = $this->user->name ?? null;
         $this->getUsers();
     }
 
     public function selectUser2($focusIndex)
     {
-        $this->user2 = $this->users2[$focusIndex] ?? new User();
-        $this->userInput2 = $this->user2->name;
+        $this->user2 = $this->users2[$focusIndex] ?? null;
+        $this->userInput2 = $this->user2->name ?? null;
         $this->getUsers2();
     }
 
@@ -110,15 +110,15 @@ class Main extends Component
 
     public function clearUser()
     {
-        $this->user = new User();
-        $this->userInput = $this->user->name;
+        $this->user = null;
+        $this->userInput = null;
         $this->getUsers();
     }
 
     public function clearUser2()
     {
-        $this->user2 = new User();
-        $this->userInput2 = $this->user2->name;
+        $this->user2 = null;
+        $this->userInput2 = null;
         $this->getUsers2();
     }
 
