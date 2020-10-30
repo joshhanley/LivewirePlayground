@@ -173,14 +173,14 @@
                 if(this.countResults) return this.countResults //Use memoised count
 
                 if (this.isGrouped) {
-                    return this.totalGroupedResults()
+                    return this.countResults = this.totalGroupedResults()
                 }
 
                 return this.countResults = this.results.length
             },
 
             totalGroupedResults() {
-                return this.countResults = Object.values(this.results).reduce((count, row) => count + row.length, 0)
+                return Object.values(this.results).reduce((count, row) => count + row.length, 0)
             },
 
             hasFocus() {
