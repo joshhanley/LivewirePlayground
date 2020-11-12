@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Section;
+use App\Models\Template;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,6 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        Template::firstOrCreate(['name' => 'Testing Template', 'description' => 'This template is for testing']);
+        Section::create(['name' => 'Test Section', 'order' => '1', 'template_id' => 1]);
+        Section::create(['name' => 'Test Section 2', 'order' => '2', 'template_id' => 1]);
     }
 }
