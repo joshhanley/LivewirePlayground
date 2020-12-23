@@ -15,6 +15,12 @@
         </style>
         @stack('styles')
 
+        @env('local')
+        <script>
+            window.addEventListener("livewire-debug", e => console.log(e.detail));
+        </script>
+        @endenv
+
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     </head>
