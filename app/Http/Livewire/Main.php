@@ -8,6 +8,7 @@ class Main extends Component
 {
     public function render()
     {
-        return view('livewire.main');
+        return view('livewire.main')
+            ->layout('layouts.app', ['title' => 'Main component title']);
     }
 }

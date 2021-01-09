@@ -21,6 +21,6 @@ Create any other components/ models/ code that is necessary to setup the example
 
 Laravel 8 is installed.
 
-Livewire `^2.3` is installed and configured in `welcome.blade.php`.
+Livewire `^2.3` is installed and configured in `layouts/app.blade.php`.
 
-Tailwind `^1.0` and Alpine `^2.0` are both pulled in via CDN in `welcome.blade.php`.
+Tailwind `^2.0` and Alpine `^2.0` are both pulled in via CDN in `layouts/app.blade.php`.
