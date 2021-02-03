@@ -1,7 +1,8 @@
 <div class="relative w-full h-screen p-4 flex flex-col  items-center bg-gray-100">
     <div class="flex space-x-4">
         {{-- Put livewire component blade content here or reference another livewire component --}}
-        App
+        {{ $something }}
+        <button wire:click="changeSomething">Change something</button>
     </div>
 </div>
 
