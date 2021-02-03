@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Main;
 use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Main::class);
+Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
+    Route::get('/', Main::class);
+});
