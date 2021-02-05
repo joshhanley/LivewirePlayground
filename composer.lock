@@ -1382,16 +1382,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.3.11",
+            "version": "v2.3.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "5036ba31571c7ec3feca9a171e96e33628bab5ea"
+                "reference": "1d76638b54a0f952f4f0334a33dfcfefc456ea4a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/5036ba31571c7ec3feca9a171e96e33628bab5ea",
-                "reference": "5036ba31571c7ec3feca9a171e96e33628bab5ea",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/1d76638b54a0f952f4f0334a33dfcfefc456ea4a",
+                "reference": "1d76638b54a0f952f4f0334a33dfcfefc456ea4a",
                 "shasum": ""
             },
             "require": {
@@ -1442,7 +1442,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.3.11"
+                "source": "https://github.com/livewire/livewire/tree/v2.3.15"
             },
             "funding": [
                 {
@@ -1450,7 +1450,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-03T01:16:27+00:00"
+            "time": "2021-02-04T16:39:14+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -7381,16 +7381,16 @@
         },
         {
             "name": "spatie/laravel-ray",
-            "version": "1.11.2",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ray.git",
-                "reference": "9a04314c27f417f09e6a74f8f04978e804ac405c"
+                "reference": "c0afa2e2b0748d0e8e7828939a651cf6cfc0e790"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/9a04314c27f417f09e6a74f8f04978e804ac405c",
-                "reference": "9a04314c27f417f09e6a74f8f04978e804ac405c",
+                "url": "https://api.github.com/repos/spatie/laravel-ray/zipball/c0afa2e2b0748d0e8e7828939a651cf6cfc0e790",
+                "reference": "c0afa2e2b0748d0e8e7828939a651cf6cfc0e790",
                 "shasum": ""
             },
             "require": {
@@ -7401,7 +7401,7 @@
                 "illuminate/support": "^7.20|^8.13",
                 "php": "^7.3|^8.0",
                 "spatie/backtrace": "^1.0",
-                "spatie/ray": "^1.13",
+                "spatie/ray": "^1.19",
                 "symfony/stopwatch": "4.2|^5.1",
                 "zbateson/mail-mime-parser": "^1.3.1"
             },
@@ -7445,7 +7445,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-ray/issues",
-                "source": "https://github.com/spatie/laravel-ray/tree/1.11.2"
+                "source": "https://github.com/spatie/laravel-ray/tree/1.12.1"
             },
             "funding": [
                 {
@@ -7457,7 +7457,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-02-02T11:11:08+00:00"
+            "time": "2021-02-05T07:37:03+00:00"
         },
         {
             "name": "spatie/macroable",
@@ -7511,16 +7511,16 @@
         },
         {
             "name": "spatie/ray",
-            "version": "1.17.4",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ray.git",
-                "reference": "36f708c611af83fb3bf766e84cad0db77124fadf"
+                "reference": "b518a25a59443ee0ddc8b3ed77ff4139c1f1273a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ray/zipball/36f708c611af83fb3bf766e84cad0db77124fadf",
-                "reference": "36f708c611af83fb3bf766e84cad0db77124fadf",
+                "url": "https://api.github.com/repos/spatie/ray/zipball/b518a25a59443ee0ddc8b3ed77ff4139c1f1273a",
+                "reference": "b518a25a59443ee0ddc8b3ed77ff4139c1f1273a",
                 "shasum": ""
             },
             "require": {
@@ -7570,7 +7570,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/ray/issues",
-                "source": "https://github.com/spatie/ray/tree/1.17.4"
+                "source": "https://github.com/spatie/ray/tree/1.19.0"
             },
             "funding": [
                 {
@@ -7582,7 +7582,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2021-02-03T07:56:01+00:00"
+            "time": "2021-02-03T13:31:41+00:00"
         },
         {
             "name": "symfony/stopwatch",
