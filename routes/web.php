@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\Main;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Main::class);
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::post('other', function () {
+    return view('other');
+});
