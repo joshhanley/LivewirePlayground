@@ -41,4 +41,8 @@ class User extends Authenticatable
         'is_active' => 'boolean',
         'email_verified_at' => 'datetime',
     ];
+
+    public function items() {
+        return $this->hasMany(Item::class);
+    }
 }
