@@ -1,7 +1,19 @@
 <div class="relative w-full h-screen p-4 flex flex-col  items-center bg-gray-100">
-    <div class="flex space-x-4">
+    <div class="flex flex-col space-y-4">
         {{-- Put livewire component blade content here or reference another livewire component --}}
-        App
+        <table>
+            <tr>
+                <th class="text-left">Name</th>
+                <th class="text-left">Item Average</th>
+            </tr>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->item_average }}</td>
+                </tr>
+            @endforeach
+        </table>
+        {{ $users->links() }}
     </div>
 </div>
 
