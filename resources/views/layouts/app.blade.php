@@ -24,7 +24,7 @@
     </script>
     @endenv
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.1.1/dist/alpine.min.js" defer></script>
+    <script src="https://unpkg.com/alpinejs@3.1.1/dist/cdn.min.js" defer></script>
 </head>
 
 <body class="antialiased">
