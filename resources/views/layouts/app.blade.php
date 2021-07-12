@@ -24,14 +24,18 @@
     </script>
     @endenv
 
-    <script src="https://unpkg.com/alpinejs@3.1.1/dist/cdn.min.js" defer></script>
+    {{-- <script src="https://unpkg.com/alpinejs@3.1.1/dist/cdn.min.js" defer></script> --}}
 </head>
 
 <body class="antialiased">
-    {{ $slot }}
+
+
+    <div id="app">{{ $slot }}</div>
 
     <livewire:scripts />
     @stack('scripts')
+
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
