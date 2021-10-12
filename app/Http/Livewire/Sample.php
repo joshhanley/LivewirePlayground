@@ -4,12 +4,10 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Main extends Component
+class Sample extends Component
 {
-    public $show = false;
-
     public function render()
     {
-        return view('livewire.main');
+        return view('livewire.sample');
     }
 }

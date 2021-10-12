@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eef09f54ec4c74b8b2b75ab5566714ec",
+    "content-hash": "57c3cf57d26bd1bd88856bc4106649ac",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1602,16 +1602,16 @@
         },
         {
             "name": "livewire/livewire",
-            "version": "v2.6.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "e39edcae6b1971b2d0f327a8e25c40e3d68cb7a0"
+                "reference": "ba99d0d17267f22bdee34a159a6921c772ef5820"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/e39edcae6b1971b2d0f327a8e25c40e3d68cb7a0",
-                "reference": "e39edcae6b1971b2d0f327a8e25c40e3d68cb7a0",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/ba99d0d17267f22bdee34a159a6921c772ef5820",
+                "reference": "ba99d0d17267f22bdee34a159a6921c772ef5820",
                 "shasum": ""
             },
             "require": {
@@ -1630,6 +1630,7 @@
                 "phpunit/phpunit": "^8.4|^9.0",
                 "psy/psysh": "@stable"
             },
+            "default-branch": true,
             "type": "library",
             "extra": {
                 "laravel": {
@@ -1662,7 +1663,7 @@
             "description": "A front-end framework for Laravel.",
             "support": {
                 "issues": "https://github.com/livewire/livewire/issues",
-                "source": "https://github.com/livewire/livewire/tree/v2.6.5"
+                "source": "https://github.com/livewire/livewire/tree/master"
             },
             "funding": [
                 {
@@ -1670,7 +1671,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-18T23:19:07+00:00"
+            "time": "2021-10-11T21:13:51+00:00"
         },
         {
             "name": "maximebf/debugbar",
@@ -8604,7 +8605,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "livewire/livewire": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
