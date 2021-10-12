@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57c3cf57d26bd1bd88856bc4106649ac",
+    "content-hash": "c51513f8a6737c6085235d7971ece858",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1606,12 +1606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/livewire/livewire.git",
-                "reference": "ba99d0d17267f22bdee34a159a6921c772ef5820"
+                "reference": "64b55a955989e494d7e44e2697c03cfe38511eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/livewire/livewire/zipball/ba99d0d17267f22bdee34a159a6921c772ef5820",
-                "reference": "ba99d0d17267f22bdee34a159a6921c772ef5820",
+                "url": "https://api.github.com/repos/livewire/livewire/zipball/64b55a955989e494d7e44e2697c03cfe38511eb4",
+                "reference": "64b55a955989e494d7e44e2697c03cfe38511eb4",
                 "shasum": ""
             },
             "require": {
@@ -1671,7 +1671,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-10-11T21:13:51+00:00"
+            "time": "2021-10-12T20:29:48+00:00"
         },
         {
             "name": "maximebf/debugbar",
