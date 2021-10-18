@@ -5,13 +5,9 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Livewire\Component;
 
-class Main extends Component
+class Sample extends Component
 {
     protected $users;
-
-    protected $listeners = [
-        'user-added' => '$refresh',
-    ];
 
     public function mount()
     {
@@ -20,13 +16,20 @@ class Main extends Component
     
     public function hydrate()
     {
-        sleep(1);
+        $this->users = User::orderBy('id')->get();
+    }
+
+    public function addUser()
+    {
+        User::factory()->create();
 
         $this->users = User::orderBy('id')->get();
+
+        $this->emit('user-added');
     }
     
     public function render()
     {
-        return view('livewire.main');
+        return view('livewire.sample');
     }
 }
