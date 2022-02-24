@@ -1,18 +1,27 @@
-<div class="relative w-full h-screen p-4 flex flex-col  items-center bg-gray-100">
-    <div class="flex space-x-4">
-        {{-- Put livewire component blade content here or reference another livewire component --}}
-        App
-    </div>
+<div>
+
+    @if ($show)
+        <ul>
+            @foreach ($this->modelARows as $row)
+                <li wire:key="model-a-{{ $row->id }}">{{ $row->id }}</li>
+            @endforeach
+        </ul>
+
+        <div>
+            {{ $this->modelARows->links() }}
+        </div>
+    @else
+        <ul>
+            @foreach ($this->modelBRows as $row)
+                <li wire:key="model-b-{{ $row->id }}">{{ $row->id }}</li>
+            @endforeach
+        </ul>
+
+        <div>
+            {{ $this->modelBRows->links() }}
+        </div>
+    @endif
+
+    <button wire:click="action">Test</button>
+
 </div>
-
-@once
-    @push('styles')
-        {{-- Put any custom styles or library styles needed for this component here --}}
-
-    @endpush
-
-    @push('scripts')
-        {{-- Put any custom scripts or library scripts needed for this component here --}}
-
-    @endpush
-@endonce
