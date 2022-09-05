@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "27fce35e2887c327b507e72ec7ebe521",
+    "content-hash": "2bd933548a98945badd9ce9fcb51b4de",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5752,6 +5752,51 @@
             "time": "2020-07-09T08:09:16+00:00"
         },
         {
+            "name": "joshhanley/livewire-dusk-extension",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "/Users/josh/Development/packages/livewire-dusk-extension",
+                "reference": "8f6c97ed17a3ef1044fbb3748eaaf470fbcbadd4"
+            },
+            "require": {
+                "laravel/dusk": "^7.0|dev-master",
+                "livewire/livewire": "^2.3|dev-master",
+                "php": "^7.4|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LivewireDuskExtension\\LivewireDuskExtensionServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LivewireDuskExtension\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "LivewireDuskExtension\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josh Hanley",
+                    "email": "josh@joshhanley.com.au"
+                }
+            ],
+            "description": "A Laravel Dusk testing helper extension for testing Livewire components.",
+            "transport-options": {
+                "relative": false
+            }
+        },
+        {
             "name": "laravel/dusk",
             "version": "v7.0.0",
             "source": {
@@ -8556,7 +8601,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "joshhanley/livewire-dusk-extension": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

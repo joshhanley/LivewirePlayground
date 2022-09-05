@@ -6,10 +6,10 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Livewire\Component;
 use Livewire\Livewire;
+use LivewireDuskExtension\LivewireDuskExtensionTestCase;
 use Tests\Browser\Components\SampleComponent;
-use Tests\DuskExtensionTestCase;
 
-class SampleTest extends DuskExtensionTestCase
+class SampleTest extends LivewireDuskExtensionTestCase
 {
     public function hasHeadlessDisabled()
     {
