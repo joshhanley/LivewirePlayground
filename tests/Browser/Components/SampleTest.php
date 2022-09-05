@@ -25,8 +25,8 @@ class SampleTest extends DuskExtensionTestCase
     {
         $this->browse(function (Browser $browser) {
             Livewire::visit($browser, SampleComponent::class)
-                ->tinker()
-                ->assertSee('Testing!');
+                // ->tinker()
+                ->assertSee('Sample!');
         });
     }
 }
