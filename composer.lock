@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c88695b22c151f580eca2b8f291a0d16",
+    "content-hash": "f73b925fba9351095697caec62c6152a",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -7005,54 +7005,6 @@
                 "source": "https://github.com/hamcrest/hamcrest-php/tree/v2.0.1"
             },
             "time": "2020-07-09T08:09:16+00:00"
-        },
-        {
-            "name": "joshhanley/livewire-dusk-extension",
-            "version": "v0.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joshhanley/livewire-dusk-extension.git",
-                "reference": "59eae108ed860cd0fc9b3e5ac05ea1d32ebdfcc8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joshhanley/livewire-dusk-extension/zipball/59eae108ed860cd0fc9b3e5ac05ea1d32ebdfcc8",
-                "reference": "59eae108ed860cd0fc9b3e5ac05ea1d32ebdfcc8",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/dusk": "^7.0|dev-master",
-                "livewire/livewire": "^2.3|dev-master",
-                "php": "^7.4|^8.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "LivewireDuskExtension\\LivewireDuskExtensionServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "LivewireDuskExtension\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Josh Hanley",
-                    "email": "josh@joshhanley.com.au"
-                }
-            ],
-            "description": "A Laravel Dusk testing helper extension for testing Livewire components.",
-            "support": {
-                "source": "https://github.com/joshhanley/livewire-dusk-extension/tree/v0.1.0"
-            },
-            "time": "2022-09-05T12:48:40+00:00"
         },
         {
             "name": "laravel/dusk",
