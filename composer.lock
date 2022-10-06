@@ -832,12 +832,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/glhd/dawn.git",
-                "reference": "6cef5f64c8a1cc5501b97da83112b1fe33f34750"
+                "reference": "7cf1eece4c53698d04b7565b94a7e16f3a9dbd5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/glhd/dawn/zipball/6cef5f64c8a1cc5501b97da83112b1fe33f34750",
-                "reference": "6cef5f64c8a1cc5501b97da83112b1fe33f34750",
+                "url": "https://api.github.com/repos/glhd/dawn/zipball/7cf1eece4c53698d04b7565b94a7e16f3a9dbd5a",
+                "reference": "7cf1eece4c53698d04b7565b94a7e16f3a9dbd5a",
                 "shasum": ""
             },
             "require": {
@@ -893,7 +893,7 @@
                 "issues": "https://github.com/glhd/dawn/issues",
                 "source": "https://github.com/glhd/dawn/tree/main"
             },
-            "time": "2022-09-27T01:23:57+00:00"
+            "time": "2022-10-02T20:34:44+00:00"
         },
         {
             "name": "graham-campbell/result-type",
