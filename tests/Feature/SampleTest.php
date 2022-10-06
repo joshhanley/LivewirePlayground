@@ -25,4 +25,11 @@ class SampleTest extends TestCase
             ->assertSeeIn('body', 'App')
             ;
     }
+
+    public function testExample2()
+    {
+        Livewire::visit($this->openBrowser(), Main::class)
+            ->assertSeeIn('body', 'App')
+            ;
+    }
 }
